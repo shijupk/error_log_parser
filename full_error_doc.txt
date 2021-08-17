@@ -1,0 +1,3117 @@
+<begin>
+No.4101
+Message name Inter-SCS safety communication error information
+Printing example SCS0101 Inter-SCS Safety Communication Receive Error Variable =
+C0102001 Code = 5041-8000
+Meaning An error is detected during inter-SCS safety communication. The erroneous
+binding variable (C0102001 in the above example) is included in the message.
+Cause The following causes may be considered. Check the error codes for more detail.
+• Stop/restart on the producing side SCS
+• Problem in the communication path
+• Change in the application of inter-SCS safety communication
+Remark Inter-SCS safety communication
+Error code The first four digits are an error code, and the next four digits are a cause
+code. The error detail can be found from the descriptions of both the codes.
+The error code represents the type of error. The table explains each error code
+and the action you can take to fix the error.
+Table 2.1-1 Message No. 4101 - Error Code List
+Code (hexadecimal) Description Action
+5040
+An error that occurs
+when an application is
+created incorrectly.
+Check the application logic.
+5041
+No data received within
+the reception interval
+timeout value. Check the producing side SCS and the communication
+path.
+5042 Time diagnosis found
+an error.
+5043
+Communication protocol
+error (internal error)
+Record the message content and report to Yokogawa’s
+service department.
+The cause code represents the event that caused the problem and is logical
+OR of the following codes.
+Table 2.1-2 Message No. 4101 - Cause Code List
+Code (hexadecimal)
+Errors Description Presumed cause
+8000 No response Communication stopped and
+data no longer arrived.
+Communication was cut off,
+or the producing side stopped.
+4000 Reset detection The restart on the producing
+side was detected. Restart on the producing side
+Continues on the next page
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-2
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 2.1-2 Message No. 4101 - Cause Code List (Table continued)
+Code (hexadecimal)
+Errors Description Presumed cause
+2000 CRC error in delay-related diagnosis
+information
+The CRC code of delay-related
+diagnosis information is
+not correct.
+Temporary communication
+error
+1000 CRC mismatch The communication content
+and CRC do not match.
+Temporary communication
+error
+0400 Equalization error of delay-related
+diagnosis information
+Communication for acquiring
+delay-related diagnosis information
+stopped.
+Communication was interrupted
+or the producer SCS is
+stopped.
+0200 Variable name error The variable name is not
+“Cddssxxx.”
+An application was created
+incorrectly.
+0100 Address error
+The domain and station numbers
+are different from the
+binding variable.
+An application was created
+incorrectly.
+0040 Transmission delay occurred
+Communication was updated
+later than the transmission
+delay timeout time.
+Communication delay
+0020 Date/time error on the producing
+side
+An error occurred in time
+management on the producing
+side, so the date/time is
+not reliable.
+Date/time management error
+on the producing side
+0010 Date/time error on the consuming
+side
+An error occurred in time
+management on the consuming
+side, so the date/time is
+not reliable.
+Date/time management error
+on the producing side
+0004 Different FB ID information The FB ID information is different
+from the initial value. Internal error
+0001 Data type error The data type does not
+match. Internal error
+No.4102
+Message name Inter-SCS safety communication error recovery information
+Printing example SCS0101 Inter-SCS Safety Communication Receive Recover Variable =
+C0102001
+Meaning An inter-SCS safety communication error for the variable (C0102001 in the
+above example) recovered. (This is a recovery message of No. 4101.)
+Cause The following causes may be considered.
+• Recovery of the producing side SCS
+• Recovery of the communication path
+• Recovery of the application of inter-SCS safety communication
+Remark Inter-SCS safety communication
+No.4103
+Message name Variable lock
+Printing example 1 In the case of I/O (N-IO) variables:
+SCS0101 Variable Locked Variable=VAR001 N-IO NODE 01 UNIT 01 SLOT
+02 CH 03
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-3
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example 2 In the case of I/O (FIO) variables:
+SCS0101 Variable Locked Variable=VAR001 NODE 1 SLOT 2 CH 3
+Printing example 3 In the case of internal variables:
+SCS0101 Variable Locked Variable=VAR001
+Meaning The variable (VAR001 in the above example) was locked by operation from
+the SENG. For an I/O variable, the channel location corresponding to the variable
+(N-IO node 1, unit 1, slot 2, channel 3 in printing example 1, and FIO
+node 1, slot 2, channel 3 in printing example 2) is also included in the message.
+Remark Forcing function
+Note Be sure to unlock the variables that were locked.
+If an IO_BOOL type or IO_REAL type variable is locked, the member variable
+v or status will be indicated in the format of [Variable=VAR001.v] at the position
+of the variable name in the system alarms. If the variable is not wired to
+the channel, the member variable v will be always displayed. Nevertheless, in
+any of the above cases, the whole IO_BOOL type or IO_REAL type variable
+will be locked.
+When locking an array element, the whole array will be locked. Under this circumstance,
+the variable name displayed in the system alarm will be attached
+with the array element subscript as [Variable=VAR001[1]].
+No.4104
+Message name Cancellation of variable lock
+Printing example 1 In the case of I/O (N-IO) variables:
+SCS0101 Variable Unlocked Variable=VAR001 N-IO NODE 01 UNIT 01 SLOT
+02 CH 03
+Printing example 2 In the case of I/O (FIO) variables:
+SCS0101 Variable Unlocked Variable=VAR001 NODE 1 SLOT 2 CH 3
+Printing example 3 In the case of internal variables:
+SCS0101 Variable Unlocked Variable=VAR001
+Meaning The lock of the variable (VAR001 in the above example) was cancelled by operation
+from the SENG. For an I/O variable, the channel location corresponding
+to the variable (N-IO node 1, unit 1, slot 2, channel 3 in printing example 1,
+and FIO node 1, slot 2, channel 3 in printing example 2) is also included in the
+message.
+Remark Forcing function
+Note If an IO_BOOL type or IO_REAL type variable is unlocked, the member variable
+v or status will be indicated in the format of [Variable=VAR001.v] at the position
+of the variable name in the system alarms. If the variable is not wired to
+the channel, the member variable v will be always displayed. Nevertheless, in
+any of the above cases, the whole IO_BOOL type or IO_REAL type variable
+will be unlocked.
+Moreover, when unlocking an array element, the whole array will be unlocked.
+Under this circumstance, the variable name displayed in the system alarm will
+be attached with the array element subscript as [Variable=VAR001[1]].
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-4
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4105
+Message name I/O module lock
+Printing example 1 SCS0101 IOM Locked N-IO NODE 01 UNIT 01 SLOT 02
+Meaning 1 An N-IO I/O module was locked by operation from the SENG. The location of
+the N-IO I/O module (N-IO node 1, unit 1, slot 2 in the the above example) is
+included in the message.
+Printing example 2 SCS0101 IOM Locked N-IO NODE 01 UNIT 01 SLOT 02 All Input Channel
+Meaning 2 All input channels of the N-IO I/O module were locked by operation from the
+SENG. The location of the N-IO I/O module (N-IO node 1, unit 1, slot 2 in the
+the above example) is included in the message.
+Printing example 3 SCS0101 IOM Locked N-IO NODE 01 UNIT 01 SLOT 02 All Output Channel
+Meaning 3 All output channels of the N-IO I/O module were locked by operation from the
+SENG. The location of the N-IO I/O module (N-IO node 1, unit 1, slot 2 in the
+the above example) is included in the message.
+Printing example 4 SCS0101 IOM Locked NODE 01 SLOT 02
+Meaning 4 An FIO I/O module was locked by operation from the SENG. The location of
+the FIO I/O module (FIO node 1, slot 2 in the above example) is included in
+the message.
+Remark Forcing function
+Note Be sure to cancel the lock of the I/O module that was locked.
+No.4106
+Message name Cancellation of I/O module lock
+Printing example 1 SCS0101 IOM Unlocked N-IO NODE 01 UNIT 01 SLOT 02
+Meaning 1 The N-IO I/O module was unlocked by operation from the SENG. The location
+of the N-IO I/O module (N-IO node 1, unit 1, slot 2 in the the above example)
+is included in the message.
+Printing example 2 SCS0101 IOM Unlocked N-IO NODE 01 UNIT 01 SLOT 02 All Input Channel
+Meaning 2 All input channels of the N-IO I/O module were unlocked by operation from the
+SENG. The location of the N-IO I/O module (N-IO node 1, unit 1, slot 2 in the
+the above example) is included in the message.
+Printing example 3 SCS0101 IOM Unlocked N-IO NODE 01 UNIT 01 SLOT 02 All Output Channel
+Meaning 3 All output channels of the N-IO I/O module were unlocked by operation from
+the SENG. The location of the N-IO I/O module (N-IO node 1, unit 1, slot 2 in
+the the above example) is included in the message.
+Printing example 4 SCS0101 IOM Unlocked NODE 01 SLOT 02
+Meaning 4 The FIO I/O module was unlocked by operation from the SENG. The location
+of the FIO I/O module (FIO node 1, slot 2 in the above example) is included in
+the message.
+Remark Forcing function
+No.4107
+Message name All input module locks
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-5
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 All Input IOM Locked
+Meaning All input channels of universal-type I/O modules, and FIO input modules, were
+locked by operation from the SENG.
+Remark Forcing function
+Note Be sure to unlock the input channels of universal-type I/O modules, and the
+FIO input modules, which were locked.
+No.4108
+Message name Cancellation of all input module locks
+Printing example SCS0101 All Input IOM Unlocked
+Meaning All input channels of universal-type I/O modules, and FIO input modules, were
+unlocked by operation from the SENG.
+Remark Forcing function
+No.4109
+Message name All output module locks
+Printing example SCS0101 All Output IOM Locked
+Meaning All output channels of universal-type I/O modules, and FIO output modules,
+were locked by operation from the SENG.
+Remark Forcing function
+Note Be sure to unlock the output channels of universal-type I/O modules, and the
+FIO output modules, which were locked.
+No.4110
+Message name Cancellation of all output module locks
+Printing example SCS0101 All Output IOM Unlocked
+Meaning All output channels of universal-type I/O modules, and FIO output modules,
+were unlocked by operation from the SENG.
+Remark Forcing function
+No.4111
+Message name All module locks
+Printing example SCS0101 All IOM Locked
+Meaning All I/O modules were locked by operation from the SENG.
+Remark Forcing function
+Note Be sure to cancel the locks of the I/O modules that were locked.
+No.4112
+Message name Cancellation of all module locks
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-6
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 All IOM Unlocked
+Meaning The locks of all I/O modules were cancelled by operation from the SENG.
+Remark Forcing function
+No.4113
+Message name Number of locks exceeded
+Printing example SCS0101 Number of Locks Exceeds the Limit = 3
+Meaning The total number of locked variables exceeded the limit count (3 in the above
+example) specified in SYS_FORCE FB.
+Cause This is an operation from the SENG. The number of locks is too many.
+Action Cancel the variable locks.
+Remark Forcing function, SYS_FORCE FB
+Note Lock variables within the limit count.
+No.4114
+Message name Recovery from exceeded number of locks
+Printing example SCS0101 Number of Locks Within the Limit = 3
+Meaning The total number of locked variables is reduced to within the limit count (3 in
+the above example) specified in SYS_FORCE FB. (This is a recovery message
+of No. 4113.)
+Cause This is an operation from the SENG.
+Remark Forcing function, SYS_FORCE FB
+No.4115
+Message name Override setting
+Printing example SCS0101 TAG001 Overridden (Instance = OVR0001)
+Meaning Override operation was performed for the override FB (OVR0001 in the above
+example) that corresponds to the tag name (TAG001 in the above example)
+from the HIS.
+Remark OVR_B, OVR_I, OVR_R, OVR_IB, OVR_IR, GOV_B, GOV_IB FB
+No.4116
+Message name Cancellation of override
+Printing example SCS0101 TAG001 Override Released (Instance = OVR0001)
+Meaning An override was cancelled for the override FB (OVR0001 in the above example)
+that corresponds to the tag name (TAG001 in the above example) from
+the HIS.
+Remark OVR_B, OVR_I, OVR_R, OVR_IB, OVR_IR, GOV_B, GOV_IB FB
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-7
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4117
+Message name Information of change to override enabled state
+Printing example SCS0101 Override Enabled
+Meaning An override was enabled.
+Cause The SW input parameter of the override FB was set to “TRUE.”
+Remark OVR_B, OVR_I, OVR_R, OVR_IB, OVR_IR, GOV_B, GOV_IB FB
+Note If the SW input parameter of any override FB is set to “TRUE,” this message is
+generated.
+No.4118
+Message name Information of change to override disabled state
+Printing example SCS0101 Override Disabled
+Meaning An override was disabled.
+Cause The SW input parameter of all override FBs were set to “FALSE.”
+Remark OVR_B, OVR_I, OVR_R, OVR_IB, OVR_IR, GOV_B, GOV_IB FB
+Note If the SW input parameters of all override FBs are set to “FALSE,” this message
+is generated.
+No.4119
+Message name Number of overrides exceeded
+Printing example SCS0101 Number of Overrides Exceeds the Limit = 3
+Meaning The total number of overridden override FBs exceeded the limit count (3 in the
+above example) specified in SYS_OVR FB.
+Cause This is an operation from the HIS. There are too many overrides.
+Action Cancel overrides.
+Remark SYS_OVR FB
+Note Override within the limit count.
+No.4120
+Message name Recovery from exceeded number of overrides
+Printing example SCS0101 Number of Overrides Within the Limit = 3
+Meaning The total number of overridden override FBs is within the limit count (3 in the
+above example) specified in SYS_OVR FB. (This is a recovery message of
+No. 4119.)
+Cause This is an operation from the HIS.
+Remark SYS_OVR FB
+No.4121
+Message name Number of enabled overrides exceeded
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-8
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 Number of Enabled OVR FBs Exceeds the Limit = 3
+Meaning The total number of override FBs in the override enabled state exceeded the
+limit count (3 in the above example) specified in SYS_OVR FB.
+Action Disable override FBs.
+Remark SYS_OVR FB
+Note Enable overrides within the limit count.
+No.4122
+Message name Recovery from exceeded number of enabled overrides
+Printing example SCS0101 Number of Enabled OVR FBs Within the Limit = 3
+Meaning The total number of override FBs in the override enabled state is within the
+limit count (3 in the above example) specified in SYS_OVR FB. (This is a recovery
+message of No. 4121.)
+Remark SYS_OVR FB
+No.4123
+Message name Number of active PASSWD FBs exceeded
+Printing example SCS0101 Number of Activated PASSWD FBs Exceeds the Limit = 3
+Meaning The total number of active PASSWD FBs exceeded the limit count (3 in the
+above example) specified in SYS_PSWD FB.
+Cause This is an operation from the HIS. There are too many active PASSWD FBs.
+Action Inactivate (reset to OFF) the PASSWD FBs that have exceeded the limit
+count.
+Remark SYS_PSWD FB
+Note Make PASSWD FBs active within the limit count.
+No.4124
+Message name Recovery from exceeded number of active PASSWD FBs
+Printing example SCS0101 Number of Activated PASSWD FBs Within the Limit = 3
+Meaning The total number of active PASSWD FBs is within the limit count (3 in the
+above example) specified in SYS_PSWD FB. (This is a recovery message of
+No. 4123.)
+Cause Active PASSWD FBs were inactivated (reset to OFF) by operation from the
+HIS.
+Remark SYS_PSWD FB
+No.4125
+Message name I/O module channel error occurred
+Printing example 1 SCS0101 IOM Channel Error N-IO NODE 01 UNIT 01 SLOT 02 CH 03
+XXXXXXXX (YYYY)
+Printing example 2 SCS0101 IOM Channel Error NODE 01 SLOT 02 CH 03 XXXXXXXX (YYYY)
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-9
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning An error occurred in a channel of an I/O module (N-IO node 1, unit 1, slot 2,
+channel 3 in printing example 1, and FIO node 1, slot 2, channel 3 in printing
+example 2). XXXXXXXX indicates an error cause. YYYY indicates an error
+code.
+Cause The table shows the causes of errors and error codes.
+Table 2.1-3 Message No. 4125 - Error Causes
+Error cause Code Description Remark
+TRNS+ 5121 Upper limit error of the transmitter occurred.
+TRNS- 5122 Lower limit error of the transmitter occurred.
+IOP+ 5123 Upper limit error of the IOP occurred.
+When an intrinsic safety barrier is
+pulled out and inserted online, IOP
++ may be detected temporarily.
+IOP- 5124 Lower limit error of the IOP occurred.
+When an intrinsic safety barrier is
+pulled out and inserted online, or
+when the barrier power supply for
+the base plate for barrier is turned
+on, IOP- may be detected temporarily.
+Ovr Range 5125
+5126
+Input value is outside of the range of
+input values (-25 % to 125 %). This indicates
+a failure of the I/O module.
+Ch Fail 5127 A channel error was detected.
+Open circuits of AO/DI/DO of FIO
+AIO/DIO modules are included in
+this error code.
+ISDiscon 5128 Intrinsic safety barriers are not installed.
+ISCfgErr 5129 Intrinsic safety barriers are installed
+incorrectly.
+Open 512a An open circuit of input/output was
+detected.
+• When intrinsic safety barriers
+are used, this error code may
+be displayed due to an error
+caused by a short circuit.
+• When an intrinsic safety barrier
+is pulled out and inserted online,
+an open circuit may be detected
+temporarily.
+Short 512b A short circuit of input/output was detected.
+FieldErr 512c
+A field external failure, barrier LFD error,
+and so on occurred. Check the
+details in the IOM report.
+• When intrinsic safety barriers
+are used, this error code may
+be displayed due to an error
+caused by a short circuit.
+• When an intrinsic safety barrier
+is pulled out and inserted online,
+a line fault may be detected
+temporarily.
+Action Check to see if the connected devices and connecting cables are normal.
+No.4126
+Message name Recovery from I/O module channel error
+Printing example 1 SCS0101 IOM Channel Recover N-IO NODE 01 UNIT 01 SLOT 02 CH 03
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-10
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning 1 A channel of an N-IO I/O module (N-IO node 1, unit 1, slot 2, channel 3 in the
+above example) recovered from an error. (This is a recovery message of No.
+4125.)
+Printing example 2 SCS0101 IOM Channel Recover NODE 01 SLOT 02 CH 03
+Meaning 2 A channel of an FIO I/O module (FIO node 1, slot 2, channel 3 in the above
+example) recovered from an error. (This is a recovery message of No. 4125.)
+Printing example 3 SCS0101 IOM Channel Recover N-IO NODE 01 UNIT 01 SLOT 02 CH 03
+(Chattering suppression is over.)
+Meaning 3 A channel of an N-IO I/O module (N-IO node 1, unit 1, slot 2, channel 3 in the
+above example) recovered from an error, and the chattering alarm suppression
+expired because the time to chattering recovery notice has elapsed. (This
+is a recovery message of No. 4125.)
+Printing example 4 SCS0101 IOM Channel Recover NODE 01 SLOT 02 CH 03 (Chattering suppression
+is over.)
+Meaning 4 A channel of an FIO I/O module (FIO node 1, unit 1, slot 2, channel 3 in the
+above example) recovered from an error, and the chattering alarm suppression
+expired because the time to chattering recovery notice has elapsed. (This
+is a recovery message of No. 4125.)
+No.4127
+Message name Setting PASSWD FB to ON
+Printing example SCS0101 TAG001 PASSWD FB Set to ON (Instance = PASSWD001)
+Meaning PASSWD FB (PASSWD001 in the above example) that corresponds to the tag
+name (TAG001 in the above example) was set to ON (active) by operation
+from the HIS.
+No.4128
+Message name Setting PASSWD FB to OFF
+Printing example SCS0101 TAG001 PASSWD FB Set to OFF (Instance = PASSWD001)
+Meaning PASSWD FB (PASSWD001 in the above example) that corresponds to the tag
+name (TAG001 in the above example) was inactivated (reset to OFF) by operation
+from the HIS.
+No.4129
+Message name GPS interface unit error
+Printing example SCS0101 GPS Interface Unit Error (RIGHT CPU)
+Meaning A CPU module (right side in the above example) detected a GPS unit error or
+time synchronization error.
+Cause The following causes may be considered.
+• Problem in the cable connecting the GPS unit and the GPS interface unit.
+• Failure of the GPS interface unit
+Action Check to see if a cable connecting the GPS unit and the GPS interface unit is
+disconnected or cut. Also, check to see if a terminator is connected to the
+ends of the cable. If everything is in place, replace the GPS interface unit.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-11
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Note If this message is displayed while the time synchronization method is V net
+time synchronization, the CPU module may be faulty.
+No.4130
+Message name Recovery of GPS interface unit
+Printing example SCS0101 GPS Interface Unit Recover (RIGHT CPU)
+Meaning Time synchronization of the GPS unit detected by CPU module (right side in
+the above example) is recovered. (This is a recovery message of No. 4129.)
+No.4131
+Message name Communication module lock
+Printing example 1 SCS0101 Communication Module All Inputs/Outputs Locked NODE 01 SLOT
+02
+Printing example 2 SCS0101 Communication Module All Inputs Locked NODE 01 SLOT 02
+Printing example 3 SCS0101 Communication Module All Outputs Locked NODE 01 SLOT 02
+Printing example 4 SCS0101 Safety Subsystem Communication Module All Inputs Locked NODE
+01 SLOT 02
+Meaning The communication module was locked by operation from the SENG. The
+message varies depending on the locked range (inputs and outputs, inputs only
+or outputs only). The location of the communication module (FIO node 1,
+slot 2 in the above example) is also included in the message.
+Remark Forcing function, subsystem communication, safety subsystem communication
+Note Be sure to cancel the lock of the communication module that was locked.
+No.4132
+Message name Cancellation of Communication module lock
+Printing example 1 SCS0101 Communication Module All Inputs/Outputs Unlocked NODE 01
+SLOT 02
+Printing example 2 SCS0101 Communication Module All Inputs Unlocked NODE 01 SLOT 02
+Printing example 3 SCS0101 Communication Module All Outputs Unlocked NODE 01 SLOT 02
+Printing example 4 SCS0101 Safety Subsystem Communication Module All Inputs Unlocked
+NODE 01 SLOT 02
+Meaning The lock of the communication module was cancelled by operation from the
+SENG. The message varies depending on the locked range (inputs and outputs,
+inputs only or outputs only). The location of the communication module
+(FIO node 1, slot 2 in the the above example) is also included in the message.
+Remark Forcing function, subsystem communication, safety subsystem communication
+No.4133
+Message name Information of a diagnosis error in the received data of SCS Link Transmission.
+Printing example SCS0101 SCS Link Transmission Receive Error Stn(SCS)=05 Code =
+5041-8000
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-12
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning A diagnosis error has been found in the received data of SCS Link Transmission.
+The source station number (such as 05) and the station type (SCS in the
+above example) that sent the Link Transmission are indicated in the message
+text. The station type indicated in the message is the station type defined on
+the SCS Link Transmission builder.
+Cause The following causes may be considered. Check the error codes for more detail.
+• Stop or restart the sender station
+• Problem in the communication path
+• The definition of the SCS Link Transmission builder may contain errors.
+Remark SCS Link Transmission
+Error code The first four digits are an error code, and the next four digits are a cause
+code. The error detail can be found from the descriptions of both the codes.
+The error code represents the type of error. The table explains each error code
+and the action you can take to fix the error.
+Table 2.1-4 Message No. 4133 - Error Code List
+Code (hexadecimal) Description Action
+5041
+No data received within
+the reception interval
+timeout value. Check the sender SCS and its communication path.
+5042 Time diagnosis found
+an error.
+5043
+Communication protocol
+error (internal error)
+Record the message content and report to Yokogawa’s
+service department.
+The cause code represents the event that caused the problem and is logical
+OR of the following codes.
+Table 2.1-5 Message No. 4133 - Cause Code List
+Code (hexadecimal)
+Errors Description Presumed Cause
+8000 No response Communication stopped and
+data no longer arrived.
+Communication error, or the
+sender station stopped or unable
+to send outputs.
+2000 CRC error in delay-related diagnosis
+information
+The CRC code of delay-related
+diagnosis information is
+not correct.
+Temporary communication
+error
+1000 CRC error in communication
+data
+The CRC code of SCS Link
+Transmission data is not correct.
+Temporary communication
+error, or SCS Link Transmission
+builder definition may
+contain [Type] error.
+0400 Equalization error of delay-related
+diagnosis information
+Communication for acquiring
+delay-related diagnosis information
+stopped.
+Communication was interrupted
+or the sender station is
+stopped.
+0100 Address error Illegal station number
+The application may contain
+errors, or the setting in the
+database is inconsistent with
+the setting of dipswitches.
+0040 Transmission delay occurred
+Communication was updated
+later than the transmission
+delay timeout time.
+Communication delay
+Continues on the next page
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-13
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 2.1-5 Message No. 4133 - Cause Code List (Table continued)
+Code (hexadecimal)
+Errors Description Presumed Cause
+0020 Time diagnosis error of the
+sender
+Time diagnosis error occurred
+in the sender, so that this
+date/time may not be correct.
+Time diagnosis error of the
+sender
+0010 Time diagnosis error of the
+receiver
+Time diagnosis error occurred
+in the receiver, so that
+this date/time may not be correct.
+Time diagnosis error of the
+receiver
+0008 Illegal scan cycle The detected scan cycle is
+an illegal value 0. Internal error
+No.4134
+Message name Information of a diagnosis error recovery in the received data of SCS Link
+Transmission.
+Printing example SCS0101 SCS Link Transmission Receive Recover Stn(SCS)=05
+Meaning The diagnosed reception error of SCS link transmission has been recovered.
+The source station number (such as 05) and the station type (SCS in the
+above example) are indicated in the message text. The station type indicated
+in the message is the same station type defined on the SCS Link Transmission
+builder.
+(This is a recovery message of No. 4133.)
+Cause The following causes may be considered.
+• Recovery of the sender station
+• Recovery of the communication path
+• The errors in the SCS Link Transmission definition have been removed.
+Remark SCS Link Transmission
+No.4135
+Message name SCS Link Transmission data lock
+Printing example SCS0101 SCS Link Transmission Data Locked Stn(SCS)=02
+Meaning The reception/transmission data for SCS Link Transmission (in the above example,
+data received from station 2) were locked. The (SCS) in the message
+text indicates the station type defined on the SCS Link Transmission builder.
+Remark Forcing function, SCS Link Transmission
+Note Be sure to cancel the lock of the station that was locked.
+No.4136
+Message name Cancellation of SCS Link Transmission data lock
+Printing example SCS0101 SCS Link Transmission Data Unlocked Stn(SCS)=02
+Meaning The lock of reception/transmission data for SCS Link Transmission (in the
+above example, data received from station 2) was cancelled. The (SCS) in the
+message text indicates the station type defined on the SCS Link Transmission
+builder.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-14
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Remark Forcing function, SCS Link Transmission
+No.4137
+Message name Number of Locked Stations in SCS Link Transmission Exceeded
+Printing example SCS0101 Number of Locks about SCS Link Transmission Exceeds the Limit =
+3
+Meaning The number of locked stations exceeded the limit (3 in the above example),
+which is defined in SYS_FORCE_ LT FB as the number of stations allowed for
+forcing.
+Cause Operation from the SENG to lock too many stations.
+Action Cancel SCS Link Transmission locks for some SCS.
+Remark Forcing function, SCS Link Transmission, SYS_FORCE_LT FB
+Note You should not lock stations beyond the limit.
+No.4138
+Message name Recovery from exceeded number of locked stations in SCS Link Transmission
+Printing example SCS0101 Number of Locks about SCS Link Transmission Within the Limit = 3
+Meaning The number of locked stations fell within the limit (3 in the above example),
+which is defined in SYS_FORCE_ LT FB as the number of stations allowed for
+forcing. (This is the recovery message of No.4137.)
+Cause Operation from the SENG.
+Remark Forcing function, SCS Link Transmission, SYS_FORCE_LT FB
+No.4139
+Message name Inter-SCS Safety Communication data lock
+Printing example SCS0101 Inter-SCS Safety Communication Data Locked Dom=01 Stn=02
+Meaning The Inter-SCS Safety Communication data received from a producer SCS (in
+the above example, station 2 in domain 1) were locked.
+The message for a lock of the local station (data produced by the station are
+locked) is also output in the same format, showing its own domain number and
+station number.
+Remark Forcing function, Inter-SCS Safety Communication
+Note Be sure to cancel the lock of the station that was locked.
+No.4140
+Message name Cancellation of Inter-SCS Safety Communication data lock
+Printing example SCS0101 Inter-SCS Safety Communication Data Unlocked Dom=01 Stn=02
+Meaning The lock of Inter-SCS Safety Communication data received from a producer
+SCS (in the above example, station 2 in domain 1) was cancelled.
+The message of cancellation for the lock of local station (data produced by the
+station are locked) is also output in the same format, showing its own domain
+number and station number.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-15
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Remark Forcing function, Inter-SCS Safety Communication
+No.4141
+Message name Number of locked stations in Inter-SCS Safety Communication exceeded
+Printing example SCS0101 Number of Locks about Inter-SCS Safety Communication Exceeds
+the Limit = 3
+Meaning The number of locked stations exceeded the limit (3 in the above example),
+which is defined in SYS_FORCE_ BD FB as the number of stations allowed
+for forcing.
+Cause Operation from the SENG to lock too many stations
+Action Cancel Inter-SCS Safety Communication locks for some SCS.
+Remark Forcing function, Inter-SCS Safety Communication, SYS_FORCE_BD FB
+Note You should not lock stations beyond the limit.
+No.4142
+Message name Recovery from exceeded number of locked stations in Inter-SCS Safety Communication
+Printing example SCS0101 Number of Locks about Inter-SCS Safety Communication Within the
+Limit = 3
+Meaning The number of locked stations fell within the limit (3 in the above example),
+which is defined in SYS_FORCE_ BD FB as the number of stations allowed
+for forcing. (This is the recovery message of No.4141.)
+Cause Operation from the SENG
+Remark Forcing function, Inter-SCS Safety Communication, SYS_FORCE_BD FB
+No.4143
+Message name Start of automatic scan period extension
+Printing example SCS0101 Scan Period Extended from the Original Scan Period 100ms to
+200ms
+Meaning Automatic extension of the scan period of the application logic execution started.
+(In the above example, the original scan period of 100 ms was extended
+to 200 ms.)
+Cause The application caused heavy load on the SCS.
+Remark SYS_SCANEXT FB, automatic scan period extension
+No.4144
+Message name Cancellation of automatic scan period extension
+Printing example SCS0101 Scan Period Recovered to the Original Scan Period 100ms
+Meaning Automatic extension of the scan period of the application logic execution is
+cancelled. (In the above example, the scan period recovered to its original period
+of 100 ms.)
+Cause The load on the SCS caused by the application was reduced.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-16
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Remark SYS_SCANEXT FB, automatic scan period extension
+No.4145
+Message name Abnormal calculation occurred
+Printing example 1 SCS0101 Calculation Error (XXXXXX) Program=PG01
+Printing example 2 SCS0101 Calculation Error (XXXXXX) Program=PG01 FU/FB=UFB01
+Meaning Abnormal calculation occurred in the application logic.
+XXXXXX indicates the type of abnormal calculation. The types are as follows:
+Div by Zero : Division by zero
+Access to the Outside of Array : Access to the outside of an array
+FPU Overflow : Overflow in the floating-point calculation
+Cast Overflow : Overflow in casting
+At “Program=”, the name of the program (POU name) where the abnormal calculation
+occurred is indicated. If the abnormal calculation occurred in a userdefined
+FU/FB, the POU name of that FU/FB is indicated at “FU/FB=.”
+Cause Error in the application
+Remark SYS_CERR FB
+No.4146
+Message name Recovery from abnormal calculation
+Printing example 1 SCS0101 Calculation Recover (XXXXXX) Program=PG01
+Printing example 2 SCS0101 Calculation Recover (XXXXXX) Program=PG01 FU/FB=UFB01
+Meaning Indicates a recovery from the abnormal calculation occurred in the application
+logic.
+XXXXXX indicates the type of abnormal calculation. The types are as follows:
+Div by Zero : Division by zero
+Access to the Outside of Array : Access to the outside of an array
+FPU Overflow : Overflow in the floating-point calculation
+Cast Overflow : Overflow in casting
+At “Program=”, the name of the program (POU name) where the abnormal calculation
+occurred is indicated. If the abnormal calculation occurred in a userdefined
+FU/FB, the POU name of that FU/FB is indicated at “FU/FB=.”
+Cause The error in the application was corrected.
+Remark SYS_CERR FB
+No.4151
+Message name Information of retainable data initialization
+Printing example SCS0101 Retain Data Initialized
+Meaning Retainable data have been initialized.
+Cause • Database with different CRC codes or generation time was offline-downloaded
+to the SCS.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-17
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+• NVRAM (nonvolatile memory) has been initialized.
+Action Set the setting values of the external communication function blocks with data
+retaining function again.
+Remark Data retaining function, external communication function blocks with data retaining
+function (ECWR_B, ECWR_I, ECWR_R), ACCUM FB, AGA_R FB
+No.4152
+Message name Online change of scan period
+Printing example SCS0101 Scan Period Changed to 200ms
+Meaning The scan period of the application logic was changed by online change download.
+Cause Operation from the SENG
+Remark Online change download
+No.4153
+Message name Information of Inter-SCS Safety Communication data lock time-up
+Printing example SCS0101 Inter-SCS Safety Communication Data Lock Elapsed the Specified
+Period = 08:00:00
+Meaning Inter-SCS Safety Communication lock exceeded the time limit (8 hours in the
+above example) specified in SYS_FORCE_BD FB.
+Action Check whether all Inter-SCS Safety Communication locks have been cancelled
+and cancel unnecessary locks.
+Remark Forcing function, Inter-SCS Safety Communication, SYS_FORCE_BD FB
+No.4154
+Message name Information of forced cancellation of Inter-SCS Safety Communication data
+locks
+Printing example SCS0101 All Inter-SCS Safety Communication Data Unlocked.
+Meaning Locks of all the Inter-SCS Safety Communication data (reception/transmission)
+in the station were forcibly cancelled.
+Cause Locks of all the Inter-SCS Safety Communication data were cancelled by using
+the SYS_FORCE_BD FB.
+Remark Forcing function, Inter-SCS Safety Communication, SYS_FORCE_BD FB
+No.4155
+Message name Information of SCS Link Transmission status change.
+Printing example SCS0101 SCS Link Transmission Data Status Set to TRUE Old=FALSE
+Stn(SCS)=03
+Meaning The data status of SCS Link Transmission (such as from station 03) has been
+changed (For an example, changed from FALSE to TRUE). The (SCS) in the
+message text indicates the station type defined on the SCS Link Transmission
+builder.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-18
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Remark Forcing function
+No.4156
+Message name Information of SCS Link Transmission definition change
+Printing example SCS0101 SCS Link Transmission Definition Changed
+Meaning SCS Link Transmission definitions were changed by online change download.
+Cause Online change download was executed from the SENG.
+No.4157
+Message name Information of SCS Link Transmission wiring change
+Printing example SCS0101 SCS Link Transmission Wiring Changed
+Meaning SCS Link Transmission wirings were changed by online change download.
+Cause Online change download was executed from the SENG.
+No.4158
+Message name Information of SCS Link Transmission lock time-up
+Printing example SCS0101 SCS Link Transmission Data Lock Elapsed the Specified Period =
+08:00:00
+Meaning SCS Link Transmission lock continued exceeding the time limit (8 hours in the
+above example) specified in SYS_FORCE_LT FB.
+Action Check whether all SCS Link Transmission locks have been cancelled, and
+cancel unnecessary locks.
+Remark Forcing function, SCS Link Transmission, SYS_FORCE_LT FB
+No.4159
+Message name Information of forced cancellation of SCS Link Transmission locks
+Printing example SCS0101 All SCS Link Transmission Data Unlocked
+Meaning Locks of all the locked SCS Link Transmission were forcibly cancelled.
+Cause Locks of all SCS Link Transmission were cancelled by operation using
+SYS_FORCE_LT FB.
+Remark Forcing function, SCS Link Transmission, SYS_FORCE_LT FB
+No.4160
+Message name Invalid password for Manual Operation FB
+Printing example SCS0101 TAG001 Specified Invalid Password
+Meaning The password string specified for Manual Operation FB (MOB_21, MOB_11,
+MOA) from the HIS is invalid.
+Cause The password entered from the HIS and the password set in Manual Operation
+FB did not match.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-19
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Action Enter the correct password for Manual Operation FB again.
+Remark Manual Operation FB (MOB_21, MOB_11, MOA)
+No.4161
+Message name Information of Output IOM Shutdown
+Printing example 1 SCS0101 All Output IOM Shutdown
+Meaning 1 All output channels in the station were shut down by SYS_ALLSD.
+Printing example 2 SCS0101 IOM Output Shutdown N-IO NODE 01 UNIT 01 SLOT 02
+Meaning 2 The specified N-IO output module was shut down by SYS_N_IOSD. The location
+of the N-IO output module (N-IO node 1, unit 1, slot 2 in the above example)
+is also included in the message.
+Printing example 3 SCS0101 Output IOM Shutdown NODE 01 SLOT 02
+Meaning 3 The specified FIO output module was shut down by SYS_IOSD. The location
+of the output module (FIO node 1, slot 2 in the above example) is included in
+the message.
+Remark SYS_ALLSD, SYS_IOSD, SYS_N_IOSD
+No.4162
+Message name Information of communication I/O definition change
+Printing example 1 SCS0101 Communication Definition Changed
+Printing example 2 SCS0101 Safety Subsystem Communication Definition Changed
+Meaning The communication I/O definitions of the communication module were
+changed by online change download.
+Cause Online change download was executed from the SENG.
+Remark Subsystem communication, safety subsystem communication
+No.4163
+Message name Information of communication I/O wiring change
+Printing example 1 SCS0101 Communication I/O Wiring Changed
+Printing example 2 SCS0101 Safety Subsystem Communication I/O Wiring Changed
+Meaning The communication I/O wirings were changed by online change download.
+Cause Online change download was executed from the SENG.
+Remark Subsystem communication, safety subsystem communication
+No.4164
+Message name Information of disabling security level change
+Printing example SCS0101 Security Levels Change Disabled
+Meaning The security level change of the SCS by a password-authenticated operation
+performed from SENG is disabled.
+Remark SYS_SEC_CTL FB
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-20
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4165
+Message name Information of enabling security level change
+Printing example SCS0101 Security Levels Change Enabled
+Meaning The security level change of the SCS by a password-authenticated operation
+performed from SENG is enabled.
+Remark SYS_SEC_CTL FB
+No.4166
+Message name Information of communication module lock time-up
+Printing example SCS0101 Communication Module Lock Elapsed the Specified Period =
+08:00:00
+Meaning The communication module lock continued exceeding the time limit (8 hours in
+the above example) specified in SYS_FORCE_SC FB.
+Action Check whether all communication module locks have been cancelled, and
+cancel unnecessary locks.
+Remark Forcing function, subsystem communication, SYS_FORCE_SC FB
+No.4167
+Message name Information of forced cancellation of communication module locks
+Printing example SCS0101 All Communication Modules Unlocked
+Meaning Locks of all communication modules were forcibly cancelled.
+Cause Locks of all communication modules were cancelled by operation using
+SYS_FORCE_SC FB.
+Remark Forcing function, subsystem communication, SYS_FORCE_SC FB
+No.4168
+Message name Information of tag name change by online change download
+Printing example SCS0101 Online Change Download Tag Name = TAG001 Changed
+Meaning The tag name (TAG001 in the above example) of FB was changed by online
+change download.
+Cause Online change download was executed from the SENG.
+Remark Password FB (PASSWD), override FB (OVR_B, OVR_I, OVR_R, OVR_IB,
+OVR_IR, GOV_B, and GOV_IB), manual operation FB (MOB_21, MOB_11,
+MOB_RS, and MOA), and FB for fire and gas devices (HSDTR and GASDTR)
+No.4169
+Message name NVRAM diagnosis error
+Printing example SCS0101 RIGHT NVRAM Diagnosis Error
+Meaning An error was detected during diagnosis of NVRAM (nonvolatile memory) in a
+CPU module (right side in the above example).
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-21
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Cause NVRAM may be faulty.
+Action Replace the applicable CPU module.
+No.4170
+Message name Flash memory diagnosis error
+Printing example SCS0101 RIGHT Flash Memory Diagnosis Error
+Meaning An error was detected during self-diagnosis of flash memory in a CPU module
+(right side in the above example).
+Cause Part of data stored in flash memory was destroyed, or flash memory may be
+faulty.
+Action If the SCS is in a single CPU module configuration, the SCS will not be able to
+start when this CPU restarts next time. It is necessary to change the CPU
+module right away.
+If the SCS is configured with redundant CPU modules, the control will switch
+to the other module after detecting this error, and the module where the error
+occurs is restarted as a standby module.
+If the error is caused by damage to the data in the flash memory, data in the
+control side will be copied to the standby module where the error occurs, and
+that module will then recover from abnormal to normal status.
+If the error is caused by the physical damage of the flash memory, this system
+alarm will occur even after the damaged CPU is switched to standby. Under
+this circumstance, it is necessary to change the damaged CPU module.
+No.4172
+Message name Information of resource change by online change download
+Printing example SCS0101 Online Change Download Resource Changed (Total POU=10)
+Meaning The resource was changed by online change download. The resource defines
+total number of POU (10 in the above example).
+Cause Online change download was executed from the SENG.
+Action Check and confirm that the total number of POU indicated in this message is
+equal to the total number of POU indicated by Database Validity Check Tool.
+No.4173
+Message name Completion of writing to flash memory
+Printing example SCS0101 Writing XXXXXX to Flash Memory Succeeded
+Meaning Writing to flash memory in a CPU module was normally completed.
+XXXXXX: Indicates the data written. The items of the data are as follows.
+Security Password : Security password
+System Database : System database
+Integration Database : Integration database
+Variable Database : Variable database
+Difference Data : Difference data
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-22
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Cause When online change download from SENG to SCS was executed or the password
+was changed, data was normally written to flash memory.
+No.4174
+Message name Failed to write to flash memory
+Printing example SCS0101 Writing XXXXX to Flash Memory Error
+Meaning Write data error was detected during check at flash memory write in a CPU
+module.
+XXXXXX: Indicates the data attempted to be written. The items of the data are
+as follows.
+Security Password : Security password
+System Database : System database
+Integration Database : Integration database
+Variable Database : Variable database
+Difference Data : Difference data
+Cause Flash memory may be faulty.
+Action If the SCS is in a single CPU module configuration, the CPU module continues
+the operation even if this error occurs. However, the SCS will not start properly
+when this CPU module restarts next time. It is necessary to change the CPU
+module as soon as possible.
+On a dual-redundant CPU module configuration SCS, if this writing error to
+flush memory occurs on one of the CPU modules, the CPU module will be
+failed and operation is continued with the other CPU module. It is necessary to
+change the failed CPU module right away. If writing to the flash memories in
+both CPU modules fails, the SCS will not be able to start when the CPU restarts.
+Under this circumstance, it is necessary to change both CPU modules
+right away.
+Remark Flash memory diagnosis
+No.4175
+Message name Failed to update external communication data
+Printing example SCS0101 External Data Refresh Failed
+Meaning The SCS has failed to update external communication data. This data is referenced
+in communications with CENTUM stations and Modbus, so when this
+error occurs, data will not be updated in those stations.
+Cause The CPU processing time allocated for the external communication function
+processing was not sufficient. As a result, processing to update the external
+communication data is not performed.
+Action Reduce the communication load on the SCS. If this error occurs regularly, review
+the balance between the application logic amount and the scan period.
+No.4177
+Message name Information of SCS security level change
+Printing example SCS0101 Security Level Changed to 1
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-23
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning The security level of the SCS was changed (1 in the above example).
+Cause The security level of the SCS was changed. The security level can be changed
+from the SENG or SYS_SECURE FB.
+Note Be sure to revert the security level to “2.”
+No.4178
+Message name Information of security level time-up
+Printing example SCS0101 Security Level = 1 Elapsed the Specified Period = 08:00:00
+Meaning The security level is set to “1” for the duration exceeding the time limit (8 hours
+in the above example) specified in SYS_SECURE FB.
+Cause The security level has not been reverted.
+Action Revert the security level to “2.”
+Remark SYS_SECURE FB
+Note When the security level is “0,” the message is not generated.
+No.4179
+Message name Information of communication I/O module output enable operation
+Printing example SCS0101 Communication Modules Output Enabled
+Meaning The communication modules are enabled for output.
+Remark I/O Channel Status dialog box, SYS_STAT_SC FB
+Note This message is irrelevant to enabling the output of output modules. You can
+be notified of the output enable operation for output modules by Message No.
+4181.
+No.4180
+Message name Information of password change
+Printing example SCS0101 Security Level = 1 Password was Changed
+Meaning The password for the SCS security level (1 in the above example) was
+changed.
+Cause The password was changed from the SENG.
+Note The message of No. 4173 is also generated after this alarm.
+No.4181
+Message name Information of output enable operation
+Printing example SCS0101 Output Enabled
+Meaning The output enable operation for the SCS was performed from the SENG.
+When all the output module’s output channels go into “output-enabled” state,
+the SCS’s operating mode changes to “Running.”
+Remark I/O Channels Status dialog box, SYS_STAT_FB
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-24
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4182
+Message name Information of FIO output module start operation
+Printing example SCS0101 IOM Started NODE 01 SLOT 02
+Meaning An FIO output module (FIO node 1, slot 2 in the above example) was started
+from the SENG.
+Remark SCS State Management window
+No.4183
+Message name Request to upload SOE to SENG
+Printing example SCS0101 SOE Save Request
+Meaning This notification prompts to upload the event information collected on the SCS
+to SENG.
+Cause This message is generated every time 12,000 events have occurred on the
+SCS.
+Action Start SOE Viewer on SENG and upload events from SCS.
+Remark SOER function
+Note This system alarm is generated even if SOE Viewer is started periodically.
+Events can be uploaded from the SCS by starting SOE Viewer and displaying
+the latest event.
+No.4184
+Message name Notification on saving SOE trip signal file in SCS
+Printing example SCS0101 SOE Trip Signal File No.= 01 Saved
+Meaning The SOE trip signal file (No. 01 in the above example) was saved in SCS.
+Action Start SOE Viewer on SENG and upload the events in the file.
+Remark SOER function
+Note When uploading the events is complete, the trip signal files need to be reset.
+Up to two trip signal files can be held in the SCS. The trip signal files can be
+reset by starting the Message Cache Tool and initializing the trip information.
+No.4185
+Message name Information of variable value change
+Printing example 1 SCS0101 Variable Set to 10.0 Old = 5.0 Variable = VAR001
+Printing example 2 SCS0101 Variable Set to TRUE Old = FALSE Variable = VAR001 NODE 1
+SLOT 2
+Printing example 3 SCS0101 Variable Set to TRUE Old = FALSE Variable = VAR001 N-IO NODE
+01 UNIT 01 SLOT 02 CH 03
+Printing example 4 SCS0101 Variable Set to TRUE Old = FALSE Variable = VAR001 NODE 1
+SLOT 2 CH 3
+Printing example 5 SCS0101 Variable Set to TRUE Old = FALSE Variable = VAR001 Stn=02
+No=025
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-25
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning The value of the variable (VAR001 in the above example) was changed from
+the SENG. For a communication I/O, a variable corresponds to the communication
+module location (FIO node 1, slot 2 in printing example 2) is also included
+in the message. For an I/O variable, the channel location corresponding to
+the variable (N-IO node 1, unit 1, slot 2, channel 3 in printing example 3, and
+FIO node 1, slot 2, channel 3 in printing example 4) is also included in the
+message.
+The VAR001 in the above printing example 5 is the instance name of the function
+block that accesses the data of SCS Link Transmission. The related station
+number and bit number are also printed.
+Remark Forcing function
+No.4186
+Message name Information of lock time-up
+Printing example SCS0101 Lock Elapsed the Specified Period = 08:00:00
+Meaning Lock continued exceeding the time limit (8 hours in the above example) specified
+in SYS_FORCE FB.
+Action Check whether all locks have been cancelled, and cancel unnecessary locks.
+Remark Forcing function, SYS_FORCE FB
+No.4187
+Message name Information of forced cancellation of locks
+Printing example SCS0101 All Variables Unlocked
+Meaning Locks of all variables were forcibly cancelled.
+Cause Locks of all variables were cancelled by operation using SYS_FORCE FB.
+Remark Forcing function, SYS_FORCE FB
+No.4188
+Message name Start of online change download
+Printing example SCS0101 Online Change Download (System Database) Start
+Meaning Online change download to the system database was started.
+Remark Download function
+No.4189
+Message name Completion of online change download
+Printing example SCS0101 Online Change Download (System Database) Complete
+Meaning Online change download to the system database was normally completed.
+Remark Download function
+No.4190
+Message name Online change download error
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-26
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 Online Change Download (System Database) Error = 5340-0001
+Meaning Online change download to the system database ended with an error.
+Cause/Action Causes and actions vary depending on the error code.
+Table 2.1-6 Message No. 4190 - Error Causes and Actions
+Error code Cause Action
+5340-**** The security level stays “2.” Set the security level to “1” and then execute online
+change download again.
+Others Internal error Record the message content and report to Yokogawa’s
+service department.
+No.4191
+Message name Completion of I/O definition rewriting
+Printing example 1 SCS0101 IOM Definition Changed N-IO NODE 01 UNIT 01 SLOT 02
+Meaning 1 I/O definition was changed by online change download to the system database.
+The location of the I/O module (N-IO node 1, unit 1, slot 2 in the example)
+is also included in the message.
+If the numbers following "SLOT" and "UNIT" are 00, it means that the node
+definition information has been changed. The node definition information is
+changed when you do the following:
+• Change comments of the node
+• Operation such as addition and deletion of the I/O modules including addition/
+deletion of the node
+If only the number following "SLOT" is 00, it means that the unit definition information
+has been changed. The unit definition information is changed when
+you do the following:
+• Change base plates
+• Operation such as addition and deletion of the I/O modules
+Printing example 2 SCS0101 IOM Definition Changed NODE 01 SLOT 02
+Meaning 2 I/O definition was changed by online change download to the system database.
+The location of the I/O module (FIO node 1, slot 2 in the example) is also
+included in the message.
+If the number following "SLOT" is 00, it means that the node definition information
+has been changed. The node definition information is changed when you
+do the following:
+• Change comments of the node
+• Add or delete I/O modules of the node
+• Change slots of the I/O modules of the node
+• Change the model of the I/O modules of the node
+No.4192
+Message name Information of override state time-up
+Printing example SCS0101 Override Elapsed the Specified Period = 08:00:00
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-27
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning Override continued exceeding the time limit (8 hours in the above example)
+specified in SYS_OVR FB.
+Action Check whether overrides were released, and release unnecessary overrides.
+Remark SYS_OVR FB
+No.4193
+Message name Information of forced release of all overrides
+Printing example SCS0101 All Overrides Released
+Meaning The overrides for all variables were forcibly released.
+Cause The overrides for all variables were forcibly released by operation using
+SYS_OVR FB.
+Remark SYS_OVR FB
+No.4194
+Message name Information of override enabled state time-up
+Printing example SCS0101 Enabled OVR FB Elapsed the Specified Period = 08:00:00
+Meaning The override enabled state continued exceeding the time limit (8 hours in the
+above example) specified in SYS_OVR FB.
+Cause Check override FB in the override enabled state, and release unnecessary
+override enabled state.
+Remark SYS_OVR FB
+No.4195
+Message name Information of communication I/O data status change
+Printing example SCS0101 Communication Data Status Set to TRUE Old = FALSE NODE 01
+SLOT 02 Definition 001
+Meaning The value of data status of communication I/O (FIO node 1, slot 2, communication
+definition 1 in the above example) was changed (from FALSE to TRUE
+in the above example) from the SENG.
+Remark Forcing function
+No.4196
+Message name Invalid password for PASSWD FB
+Printing example SCS0101 TAG001 PASSWD FB Specified Invalid Password
+Meaning The password string specified for PASSWD FB from the HIS is invalid.
+Cause The password entered from the HIS and the password set in PASSWD FB did
+not match.
+Action Specify the correct password for PASSWD FB and enter it again.
+Remark PASSWD FB
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-28
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4197
+Message name Information on active PASSWD FB time-up
+Printing example SCS0101 Activated PASSWD FB Elapsed the Specified Period = 10:00:00
+Meaning PASSWD FB has been active exceeding the time limit (10 hours in the above
+example) specified in SYS_PSWD.
+Action Deactivate PASSWD FB that is not required to be active.
+Remark SYS_PSWD FB
+No.4198
+Message name Information on forced reset of PASSWD FB
+Printing example SCS0101 All PASSWD FB Reset to OFF
+Meaning The outputs of all active PASSWD FBs were forcibly set to OFF.
+Cause The outputs of all active PASSWD FBs were forcibly inactivated (reset to OFF)
+by operation using SYS_PSWD FB.
+Remark SYS_PSWD FB
+No.4199
+Message name Override communication error
+Printing example SCS0101 TAG001 Override Communication Error (Instance = OVR001)
+Meaning Despite an attempt to operate override on the FB OVR001 (in the above example)
+with the tag name TAG001 (in the above example) from HIS, communication
+error has occurred.
+Cause A temporary communication error occurred, and the SCS detected the problem
+of the communication data.
+Action Execute override operation again.
+Remark Override FB
+No.4201
+Message name Information of node maintenance port enable operation
+Printing example SCS0101 NODE Maintenance Port Enable N-IO NODE 01
+Meaning An operation to enable the maintenance port of the N-IO node (1 in the above
+example) of the safety control station (station name = SCS0101) was performed.
+No.4202
+Message name Information of node maintenance port disable operation
+Printing example SCS0101 NODE Maintenance Port Disable N-IO NODE 01
+Meaning An operation to disable the maintenance port of the N-IO node (1 in the above
+example) of the safety control station (station name = SCS0101) was performed.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-29
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4203
+Message name Information of node maintenance port disable operation for all N-IO nodes
+Printing example SCS0101 NODE Maintenance Port Disable All N-IO NODE
+Meaning An operation to disable the maintenance ports of all N-IO nodes of the safety
+control station (station name = SCS0101) was performed.
+No.4205
+Message name Information of node maintenance port enabled state
+Printing example SCS0101 NODE Maintenance Port Enabled N-IO NODE 01
+Meaning The maintenance port of the N-IO node (1 in the above example) of the safety
+control station (station name = SCS0101) was enabled.
+No.4206
+Message name Information of node maintenance port disabled state
+Printing example SCS0101 NODE Maintenance Port Disabled N-IO NODE 01
+Meaning The maintenance port of the N-IO node (1 in the above example) of the safety
+control station (station name = SCS0101) was disabled.
+No.4207
+Message name Information of HSDTR FB or GASDTR FB reset operation
+Printing example 1 SCS0101 TAG001 Reset Requested (Reset ID = 1)
+Meaning 1 An operation to reset the HSDTR FB or GASDTR FB that corresponds to the
+tag name (TAG001 in the above example) was performed from HIS. For a reset
+operation for GASDTR FB, information in the parentheses “(Reset ID = 1)”
+is not displayed.
+Printing example 2 SCS0101 DTR001 Reset Requested (Reset ID = 1)
+Meaning 2 An operation to reset HSDTR FB or GASDTR FB (DTR001 in the above example)
+was performed from an external switch. For a reset operation for
+GASDTR FB, information in the parentheses “(Reset ID = 1)” is not displayed.
+Remark HSDTR FB, GASDTR FB
+No.4208
+Message name Communication error in HSDTR FB or GASDTR FB reset operation
+Printing example SCS0101 TAG001 Reset Request Communication Error
+Meaning An operation to reset the HSDTR FB or GASDTR FB that corresponds to the
+tag name (TAG001 in the above example) was performed from HIS, but resulted
+in a communication error.
+Cause A temporary communication error occurred, and the SCS detected the problem
+of the communication data.
+Action Perform the reset operation again.
+Remark HSDTR FB, GASDTR FB
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-30
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4209
+Message name Safety subsystem communication error
+Printing example SCS0101 SS-SCOM Error FIO NODE 01 SLOT 01 PORT 01 CG01
+Code=5A01
+Meaning An error occurred in the indicated fire and gas communication (in the above
+example, FIO node 1, slot 1, port 1, communication group name CG01).
+Communication group name is a name that is set in the Communication Group
+column of the Safety Communication I/O Editor.
+Cause This message is generated when the following errors are detected: Check the
+error codes for more detail.
+• Failure of fire and gas devices, such as gas detectors (GS01)
+• The safety control station received abnormal safety data from a fire and
+gas device.
+• The fire and gas device could not receive safety data from the safety control
+station properly.
+• Response to a request from the safety control station to the fire and gas
+device could not be received.
+• Initialization of fire and gas communication started due to online change
+downloading for the SCS.
+Action Take an action based on the error message. Message No.4211 may be generated
+at the same time. If generated, also take action for No.4211.
+Remark Safety subsystem communication
+Note If a recovery message is not generated even after removing the possible
+cause of the error, the alarm is active for another cause. Check the cause of
+error in the IOM Report, and remove it.
+Error code The error code represents the type of error. The following table describes the
+error codes.
+Table 2.1-7 Message No. 4209 - Error Code List
+Code
+(hexadecimal)
+Error Cause Action
+5A01 A fire and gas device failed. A fire and gas device failed. Replace the fire and gas device.
+5A02 A problem occurred in the fire
+and gas communication path,
+and the safety control station
+received bad safety data from
+the fire and gas device.
+The safety layer of the fire and
+gas device is not operating
+properly.
+Contact the manufacturer of
+the fire and gas device.
+Continues on the next page
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-31
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 2.1-7 Message No. 4209 - Error Code List (Table continued)
+Code
+(hexadecimal)
+Error Cause Action
+5A03 A problem occurred in the fire
+and gas communication path,
+and the fire and gas device
+could not receive safety data
+from the safety control station.
+• A problem occurred in the
+communication path between
+the safety control station
+and fire and gas device.
+• There is an error in the
+PROFIsafe setting of
+ProSafe-RS or the fire and
+gas device.
+• Check the communication
+path between the safety
+control station and fire and
+gas device.
+• Check the PROFIsafe setting
+of ProSafe-RS or the
+fire and gas device.
+• If a message No.4211 is
+generated at the same time,
+the cause may be an abnormality
+in the communication
+path. Refer to the action for
+message No.4211 as well.
+5A04 A problem occurred in the fire
+and gas communication path,
+and the response to a request
+from the safety control station
+to the fire and gas device could
+not be received.
+• A problem occurred in the
+communication path between
+the safety control station
+and fire and gas device.
+• There is an error in the
+PROFIsafe setting of
+ProSafe-RS or the fire and
+gas device.
+• The safety layer of the fire
+and gas device is not operating
+properly.
+• Check the communication
+path between the safety
+control station and fire and
+gas device.
+• Check the PROFIsafe setting
+of ProSafe-RS or the
+fire and gas device.
+• Contact the manufacturer of
+the fire and gas device.
+5A05 The safety control station started
+initialization of fire and gas
+communication.
+Online change download was
+performed for the safety control
+station after changing definitions
+regarding fire and gas
+communication.
+If the recovery alarm is not
+generated even after the expected
+PROFIsafe initialization
+time has elapsed, check the
+error code in the IOM Report
+and take an action based on
+the error code.
+No.4210
+Message name Recovery from safety subsystem communication error
+Printing example SCS0101 SS-SCOM Recover FIO NODE 01 SLOT 01 PORT 01 CG01
+Meaning Fire and gas communication error has been recovered. (This is a recovery
+message for No. 4209.)
+Remark Safety subsystem communication
+No.4211
+Message name Safety subsystem communication path error
+Printing example SCS0101 SS-SCPATH Error FIO NODE 01 SLOT 01 PORT 01 CG01
+Code=A3B0
+Meaning An error occurred in the communication path between the indicated fire and
+gas communication module and the safety subsystem device (in the above example,
+FIO node 1, slot 1, port 1, communication group name CG01).
+Communication group name is a name that is set in the Communication Group
+column of the Safety Communication I/O Editor.
+Cause This message is generated when the following errors are detected:
+• Error in the definition information downloaded to S2LP131
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-32
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+• Error in the communication with PROFINET IO-Device
+• Error in Field Wireless Management Station (YFGW410)
+• Error in Field Wireless Access Point (YFGW510)
+Action Take an action based on the error message. Message No.4209 may be generated
+at the same time. If generated, also take action for No.4209.
+Remark Safety subsystem communication
+Note If a recovery message is not generated even after removing the possible
+cause of the error, the alarm is active for another cause. Check the cause of
+error in the IOM Report, and remove it.
+Error code The error code represents the type of error. The table explains each error code
+and the action you can take to fix the error.
+Table 2.1-8 Message No. 4211 - Error Code List
+Code
+(hexadecimal)
+Error Cause Action
+A393 BAD_BY_DEVICE received
+from PROFINET IO-Device
+Error occurred in PROFINET
+IO-Device.
+Refer to the manual of PROFINET
+IO-Device.
+A394 BAD_BY_SLOT received from
+PROFINET IO-Device
+Error occurred in PROFINET
+IO-Device.
+Refer to the manual of PROFINET
+IO-Device. This error
+code is not reported when the
+PROFINET IO-Device is
+YFGW410.
+A395 BAD_BY_SUBSLOT received
+from PROFINET IO-Device
+When the PROFINET IO-Device
+is YFGW410, possible
+causes are as follows:
+• GS01 has not joined the
+wireless network, or GS01
+is not sending data to
+YFGW410.
+• There is an error in the
+PROFINET setting of
+ProSafe-RS or YFGW410.
+When the PROFINET IO-Device
+is not YFGW410:
+• Refer to the manual of
+PROFINET IO-Device.
+Take the following actions
+when the PROFINET IO-Device
+is YFGW410:
+• Refer to the manual of
+YFGW410.
+• Check the PROFINET setting
+of ProSafe-RS or
+YFGW410.
+When the PROFINET IO-Device
+is not YFGW410:
+• Refer to the manual of
+PROFINET IO-Device.
+A396 Status other than
+BAD_BY_DEVICE,
+BAD_BY_SLOT, and
+BAD_BY_SUBSLOT received
+from PROFINET IO-Device
+• Error occurred in S2LP131.
+• A problem occurred in the
+communication path between
+S2LP131 and PROFINET
+IO-Device.
+• Error occurred in PROFINET
+IO-Device.
+• Replace the S2LP131.
+• Check the communication
+path between S2LP131 and
+PROFINET IO-Device.
+• Refer to the manual of
+PROFINET IO-Device.
+A3B0 No response from PROFINET
+IO-Device
+• A problem occurred in the
+communication path between
+S2LP131 and PROFINET
+IO-Device.
+• There is an error in the
+PROFINET setting of
+ProSafe-RS or PROFINET
+IO-Device.
+• Check the communication
+path between S2LP131 and
+PROFINET IO-Device.
+• Check the PROFINET setting
+of PROFINET IO-Device.
+A3B7 Invalid data type set in Safety
+Communication I/O Editor
+Invalid data type is set in the
+Data Type column of the Safety
+Communication I/O Editor.
+Check the data type that is set
+in the Data Type column of the
+Safety Communication I/O Editor.
+Continues on the next page
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-33
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 2.1-8 Message No. 4211 - Error Code List (Table continued)
+Code
+(hexadecimal)
+Error Cause Action
+A3E9 YFGW410 control right switchover
+Error occurred in the active
+YFGW410 of redundant
+YFGW410.
+Check the previously active
+YFGW410, which is now in the
+standby state. Note that, for a
+control right switchover, a recovery
+message is generated
+after two seconds.
+A3EA Error in the GW1 system of
+YFGW410
+Error occurred in the GW1 system
+of YFGW410.
+Check the YFGW410 for the
+GW1 system. For the action to
+be taken for YFGW410, refer
+to the manual or YFGW410.
+A3EB Error in the GW2 system of
+YFGW410
+Error occurred in the GW2 system
+of YFGW410.
+Check the YFGW410 for the
+GW2 system. For the action to
+be taken for YFGW410, refer
+to the manual or YFGW410.
+A3EC Unstable active/standby state
+of YFGW410
+Error occurred in redundant
+YFGW410.
+Check the YFGW410. For the
+action to be taken for
+YFGW410, refer to the manual
+or YFGW410.
+A3F0 YFGW510 error • YFGW510 failed.
+• A problem occurred in the
+communication path between
+YFGW510 and
+YFGW410.
+• There is an error in the
+YFGW510 setting.
+• Replace the YFGW510.
+• Check the communication
+path between YFGW510
+and YFGW410.
+• Refer to the manual of
+YFGW510.
+No.4212
+Message name Recovery from safety subsystem communication path error
+Printing example SCS0101 SS-SCPATH Recover FIO NODE 01 SLOT 01 PORT 01 CG01
+Meaning The communication between the indicated fire and gas communication module
+and the safety subsystem device recovered. (This is a recovery message for
+No. 4211.)
+Remark Safety subsystem communication
+No.4213
+Message name Safety subsystem communication I/O lock
+Printing example SCS0101 Safety Subsystem Communication I/O Locked NODE 01 SLOT 02
+CG01
+Meaning Specified fire and gas communication I/O (in the above example, FIO node 1,
+slot 2, communication group name CG01) was locked by operation from the
+SENG. Communication group name is a name that is set in the Communication
+Group column of the Safety Communication I/O Editor.
+Remark Forcing function, safety subsystem communication
+Note Be sure to unlock the safety subsystem communication I/O definition that was
+locked.
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-34
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4214
+Message name Cancellation of safety subsystem communication I/O lock
+Printing example SCS0101 Safety Subsystem Communication I/O Unlocked NODE 01 SLOT 02
+CG01
+Meaning Specified fire and gas communication I/O (in the above example, FIO node 1,
+slot 2, communication group name CG01) was unlocked by operation from the
+SENG.
+Communication group name is a name that is set in the Communication Group
+column of the Safety Communication I/O Editor.
+Remark Forcing function, safety subsystem communication
+No.4215
+Message name Number of safety subsystem communication I/O locks exceeded
+Printing example SCS0101 Number of Locks about Safety Subsystem Communication I/O Exceeds
+the Limit = 3
+Meaning The total number of locked safety subsystem communication I/O exceeded the
+limit count (3 in the above example) specified in SYS_FORCE_SF FB.
+Cause This is an operation from the SENG. The number of locks is too many.
+Action Unlock some safety subsystem communication I/O.
+Remark Forcing function, safety subsystem communication, SYS_FORCE_SF FB
+Note Unlock safety subsystem communication I/O within the limit count.
+No.4216
+Message name Recovery from exceeded number of safety subsystem communication I/O
+locks
+Printing example SCS0101 Number of Locks about Safety Subsystem Communication I/O Within
+the Limit = 3
+Meaning The total number of locked safety subsystem communication I/O fell below the
+limit count (3 in the above example) specified in SYS_FORCE_SF FB. (This is
+a recovery message for No. 4215.)
+Cause This is an operation from the SENG.
+Remark Forcing function, safety subsystem communication, SYS_FORCE_SF FB
+No.4217
+Message name Safety subsystem communication I/O data status change
+Printing example SCS0101 Safety Subsystem Communication I/O Status Set to TRUE Old =
+FALSE NODE 01 SLOT 02 CG01
+Meaning Data status value of fire and gas communication I/O (in the above example,
+FIO node 1, slot 2, communication group name CG01) was changed from the
+SENG. (Changed from FALSE to TRUE in the above example.)
+Communication group name is a name that is set in the Communication Group
+column of the Safety Communication I/O Editor.
+Remark Forcing function, safety subsystem communication
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-35
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.4219
+Message name Safety subsystem communication I/O lock time-up
+Printing example SCS0101 Safety Subsystem Communication I/O Lock Elapsed the Specified
+Period = 08:00:00
+Meaning Fire and gas communication I/O lock continued exceeding the time limit (8
+hours in the above example) specified in SYS_FORCE_SF FB.
+Action Check whether all fire and gas communication I/O locks have been canceled,
+and cancel unnecessary locks.
+Remark Forcing function, safety subsystem communication, SYS_FORCE_SF FB
+No.4220
+Message name Forcible cancellation of all safety subsystem communication I/O locks
+Printing example SCS0101 All Safety Subsystem Communication I/O Unlocked
+Meaning Locks of all safety subsystem communication I/O were forcibly canceled.
+Cause Locks of all safety subsystem communication I/O were canceled by operation
+using SYS_FORCE_SF FB.
+Remark Forcing function, safety subsystem communication, SYS_FORCE_SF FB
+No.4221
+Message name Alarm for the operation data reset switch of CPU module
+Printing example SCS0101 RIGHT Operation Data Reset Switch Alarm
+Meaning The operation data reset switch of the CPU module (right side in the above example)
+in the safety control station (station name = SCS0101) remains in “RESET”
+status.
+Cause The operation data reset switch is in “RESET” status.
+Action Change the status of operation data reset switch to “HOLD”.
+No.4222
+Message name Recovery from alarm for the operation data reset switch of CPU module
+Printing example SCS0101 RIGHT Operation Data Reset Switch Recover
+Meaning The operation data reset switch of the CPU module (right side in the above example)
+in the safety control station (station name = SCS0101) became in
+“HOLD” status. (This is a recovery message of No.4221.)
+<2.1 System Alarms (Message Numbers 4101 through 4222)> 2-36
+IM
+No.0001
+Message name Reset start of safety control station
+Printing example SCS0101 RIGHT Manual Reset Start
+Meaning A CPU module (right side in the above example) of the safety control station
+(station name = SCS0101) was reset and started.
+Cause Start operation from the SENG or from the front switch of the CPU module
+No.0003
+Message name Safety control station automatic reset start
+Printing example SCS0101 RIGHT Automatic Reset Start
+Meaning An error occurred in the displayed CPU module (right side in the above example)
+of the safety control station (station name=SCS0101), which caused the
+safety control station to be automatically reset started.
+Cause CPU module is faulty.
+No.0005
+Message name Power ON initial cold start of safety control station
+Printing example SCS0101 Power ON (Cold Start)
+Meaning The safety control station (station name = SCS0101) performed the initial cold
+start processing after it was powered ON.
+Cause Recovery from power failure
+Note The safety control station always performs the initial cold start processing after
+recovery from power failure.
+No.0009
+Message name Transfer of control right of safety control station
+Printing example SCS0101 Control Transfer
+Meaning A transfer of control right occurred in the redundant safety control station (station
+name = SCS0101).
+Cause • The CPU module on one side was stopped.
+• An error occurred in the CPU module on one side.
+Action The CPU module on the standby side takes over control. Replace the CPU
+module that was stopped.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-2
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.0011
+Message name Fail information of safety control station
+Printing example SCS0101 RIGHT Fail (xxxxxxxx Code= yyyy yyyy yyyy yyyy)
+Meaning A CPU module (right side in the above example) of the safety control station
+(station name = SCS0101) failed.
+Cause The causes are indicated by “causes (xxxxxxxx)” and a code. For more information,
+see the table.
+Table 3.1-1 Message No. 0011 - Cause List
+Item Causes
+xxxxxxxx
+Code (hex 16 digits)
+yyyy yyyy yyyy yyyy Description Auto restart
+CPU
+module
+stop
+SW STOP
+-
+Stop by operation of the front switch of
+the CPU module No
+V STOP Stop instruction via control bus No
+DC FAIL Stop due to power failure No
+CPU
+DOWN
+NSR3(*1)
+An error occurred during CPU module error
+check.
+NSR3, INTSTS, ERRSTS1 and
+ERRSTS2 are detailed error codes.
+Yes
+INTSTS(*1)
+ERRSTS1(*1)
+ERRSTS2(*1)
+SELFSTOP
+(*2)
+Stop after software detected an error No
+UNKNOWN
+Stop due to unknown cause No
+RESTART Restart after software detected an error Yes
+*1: If this error message is displayed, report the display contents of causes (xxxxxxxx) and code to Yokogawa’s service department.
+*2: Refer to the table “Error Codes and Solutions.”
+Table 3.1-2 Error Codes and Solutions
+Code (hex; 16 digits) Error Solution
+0000 5090 yyyy yyyy Zero division occurred when running
+the application logic.
+Check to see if the application logic contains
+zero division or not, and correct the
+application logic if it contains.
+0000 5091 yyyy yyyy
+The application logic is trying to access
+an array datum beyond the
+scope of the array.
+Check the application and find out which
+logic program is accessing the out-of-range
+array data and correct the error.
+0000 50A9 yyyy yyyy
+The database inconsistence is detected.
+It may be caused by restarting
+the SCS without releasing the
+brake point.
+Run offline downloading.
+4000 3BF1 0255 8082
+(*1)
+The firmware (Revision F4) in the
+CPU module is too old to support the
+system with Optical ESB Bus Repeater
+modules.
+For a system that contains Optical ESB
+Bus Repeater modules, the firmware of
+CPU with the proper revision number
+should be used.
+4000 3BF1 xxxx xxxx
+An error has been detected in the
+I/O unit of the CPU module.
+SCSV1-S : There may be a failure in
+the I/O unit of the CPU module.
+SCSP2-S, SCSP3-S: There may be
+a failure in the I/O unit of the CPU
+module or the I/O communication is
+posing heavy load on the CPU.
+If one of the redundant CPU modules has
+stopped, message No. 0787 is generated
+at the same time.
+Refer to the explanation of message No.
+0787.
+Continues on the next page
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-3
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.1-2 Error Codes and Solutions (Table continued)
+Code (hex; 16 digits) Error Solution
+0000 5010 yyyy yyyy The CPU model and station model
+are inconsistent.
+Match the CPU model and station model
+with each other.
+FFFF 000B 0000 000F The calculation in a running application
+overflowed.
+Check the application and find out what
+caused the calculation overflow and then
+modify it.
+Other Other
+If this error message is displayed, report
+the display contents of causes (xxxxxxxx)
+and the code to Yokogawa’s service department.
+*1: This code is not generated in SCSP2-S and SCSP3-S.
+Action If the safety control station operates normally after restarting automatically,
+continue operation. If the safety control station stops after restarting automatically,
+replace the CPU module.
+No.0013
+Message name AC power supply failure of safety control station
+Printing example SCS0101 AC Fail (Time 05.02.01 18:45)
+Meaning AC power of the safety control station (station name = SCS0101) failed and
+was then recovered. The date and time indicated are when the power failed.
+This message is output after the power is recovered.
+Cause The voltage of AC power supply dropped, or a power failure occurred.
+Note The SCS has been initialized and then started.
+No.0015
+Message name Self-diagnosis error of clock inside CPU module
+Printing example SCS0101 RTC Diagnose Error Code=0001
+Meaning An error was detected during self-diagnosis of the clock inside the safety control
+station (station name = SCS0101).
+Code=0001: Check pattern mismatch
+Code=0002: Inappropriate date/time value
+Code=0003: Date/time not updated
+Action Replace the CPU module.
+No.0017
+Message name ROM checksum error of CPU module
+Printing example SCS0101 RIGHT ROM Sum Check Error
+Meaning A ROM checksum error was detected in the indicated CPU module (right side
+in the above example) of the safety control station (station name = SCS0101).
+Action Replace the CPU module.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-4
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.0021
+Message name Internal task error of safety control station
+Printing example SCS0101 Internal Error TASK=TSK1 Code=100 Error=1000 - E0F0
+Meaning An error state was detected during the execution of a task (TSK1 in the above
+example) in the safety control station (station name = SCS0101). “TASK”,
+“Code” and “Error” indicate detailed error information.
+Cause This is a software problem.
+Action Report the message content to Yokogawa’s service department.
+No.0023
+Message name Mapping block fatal error
+Printing example SCS0101 Block TAG001 Return Error 8E04 and stop
+Meaning An execution disabled error was detected during the execution of a mapping
+block (TAG001 in the above example) in the safety control station (station
+name = SCS0101).
+Cause There is a problem in the integration DB. “Error” indicates detailed error information.
+Action Report the message content to Yokogawa’s service department.
+No.0025
+Message name Function control word error
+Printing example SCS0101 No Block Control Word for Block Type=1804
+Meaning The internal program that corresponds to the block type code of the safety
+control station (station name = SCS0101) does not exist. “Type” indicates detailed
+internal information.
+Cause This is an internal error at task initialization.
+Action Report the message content to Yokogawa’s service department.
+No.0027
+Message name Mapping block record information error
+Printing example SCS0101 TAG001 Block Bad Record No = 3
+Meaning There is a bad record in the mapping block (TAG001 in the above example) of
+the safety control station. “No” indicates the bad record number in the database.
+Cause The mapping block and the record block number do not match.
+Action Report the block type and record number where an error occurred to Yokogawa’s
+service department.
+Note Do not perform online change download after this alarm occurred.
+No.0033
+Message name Online downloading abnormal end
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-5
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 Online Download Error Code=9402 - 0000
+Meaning Online change download of the safety control station (station name =
+SCS0101) ended with an error. “Error Code” indicates detailed internal information.
+Cause/Action Perform the appropriate action based on the cause that is indicated for the detailed
+error codes.
+Table 3.1-3 Message No. 0033 - Error Code List
+Code Error Contents Cause Action
+9402
+9403
+9404
+9405
+Online change
+downloading abnormal
+end
+The SCS was reset and started
+during online change download. Execute offline download.
+Others Internal error Internal error Report the display content of the code
+to Yokogawa’s service department.
+No.0041
+Message name Safety control station fan alarm
+Printing example SCS0101 Fan (SCU N1) Alarm
+Meaning A cooling fan of the safety control station (station name = SCS0101) is abnormal.
+One of the following items is displayed in the parentheses in the above
+example.
+SCU N1: Left side fan
+SCU N2: Right side fan
+Cause The cooling fan stopped or its revolution is abnormal.
+Action Replace the failed fan unit.
+Remark HKU function
+No.0042
+Message name Recovery from safety control station fan alarm
+Printing example SCS0101 Fan(SCU N1) Recover
+Meaning The cooling fan of the safety control station (station name = SCS0101) recovered.
+The content in the parentheses in the above example is the same as
+message No. 0041. (This is a recovery message of No. 0041.)
+Remark HKU function
+No.0043
+Message name Safety control station temperature alarm
+Printing example SCS0101 Temperature(RIGHT BATTERY) Alarm
+Meaning This is a temperature rise alarm of the safety control station (station name =
+SCS0101). One of the following items is displayed in the parentheses in the
+above example.
+RIGHT BATTERY: Battery of the right side CPU module
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-6
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+LEFT BATTERY: Battery of the left side CPU module
+AIR IN: Air inlet
+AIR OUT: Air outlet
+Cause The CPU module temperature exceeded the specified value.
+Action After checking the operation of the cooling fans, report to Yokogawa’s service
+department as necessary.
+Remark HKU function
+No.0044
+Message name Recovery from safety control station temperature alarm
+Printing example SCS0101 Temperature(RIGHT BATTERY) Recover
+Meaning The temperature of the safety control station (station name = SCS0101) recovered
+normally. The content in the parentheses in the above example is the
+same as message No. 0043. (This is a recovery message of No. 0043.)
+Remark HKU function
+No.0045
+Message name Power supply module alarm of safety control station
+Printing example SCS0101 RIGHT PSU Alarm
+Meaning The power supply module of a CPU node (right side in the above example) of
+the safety control station (station name = SCS0101) is abnormal.
+Cause Power supply module failure
+Action Replace the applicable power supply module.
+No.0046
+Message name Recovery from power supply module alarm of safety control station
+Printing example SCS0101 RIGHT PSU Recover
+Meaning The power supply module of a CPU node (right side in the above example) of
+the safety control station (station name = SCS0101) recovered normally. (This
+is a recovery message of No. 0045.)
+No.0047
+Message name Battery alarm of CPU module
+Printing example SCS0101 RIGHT Battery Alarm
+Meaning An error occurred on the battery of the CPU module (right side in the above
+example) in the safety control station (station name = SCS0101.)
+Cause If the CPU module has a battery ON/OFF switch, the battery failed or the
+switch was turned “OFF.” If the CPU module does not have a battery ON/OFF
+switch, the battery failed.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-7
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Action If the CPU module has a battery ON/OFF switch, check that the switch is
+turned “ON.” If the above message is generated even though the switch is
+“ON”, replace the battery.
+If the CPU module does not have a battery ON/OFF switch, replace the battery.
+Remark HKU function
+No.0048
+Message name Recovery from battery alarm of CPU module
+Printing example SCS0101 RIGHT Battery Recover
+Meaning A battery of the CPU module (right side in the above example) of the safety
+control station (station name = SCS0101) recovered normally. (This is a recovery
+message of No. 0047.)
+Remark HKU function
+No.0053
+Message name Safety control station cabinet temperature alarm
+Printing example SCS0101 Temperature Alarm N-IO NODE 01 Temp(HI)
+Meaning The temperature in the cabinet storing N-IO node 1 of the safety control station
+(station name = SCS0101) is out of the normal range. One of the following
+items is displayed in the parentheses in the above example.
+HI: High Alarm
+LO: Low Alarm
+Action After checking the cooling fans of the applicable cabinet, report to Yokogawa’s
+service department as necessary.
+No.0054
+Message name Recovery from safety control station cabinet temperature alarm
+Printing example SCS0101 Temperature Recover N-IO NODE 01 Temp(HI)
+Meaning The temperature in the cabinet of the safety control station recovered normally.
+The content in the parentheses in the above example is the same as message
+No. 0053. (This is a recovery message of No. 0053.)
+No.0055
+Message name Information of same frame reception in online change download communication
+Printing example SCS0101 Received Same Online Download Frame Code=1 Frame=3
+Meaning The same communication frame was received twice during the execution of
+online change download. “Code” and “Frame” indicate detailed internal information.
+Action Execute online change download again.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-8
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.0057
+Message name Information of online change download error
+Printing example SCS0101 Online Download Error Call Code=9601 - 0000 Data=91,0,0,0
+Meaning An error occurred during the execution of online change download of the safety
+control station (station name = SCS0101). “Code” and “Data” indicate detailed
+internal information.
+Cause This error occurs if error data cannot be saved on the safety control station
+side.
+Action It is necessary to determine an action to take based on the “Code” and “Data”
+information. Report the display contents of “Code” and “Data” to Yokogawa’s
+service department.
+Note Do not execute online change download after this alarm occurred.
+No.0059
+Message name Information of recovery from node power failure
+Printing example 1 SCS0101 N-IO NODE Power On N-IO NODE 02
+Printing example 2 SCS0101 FIO NODE Power On FIO NODE 02
+Meaning A node (2 in the above example) of the safety control station (station name =
+SCS0101) recovered from power failure.
+No.0063
+Message name ESB bus error
+Printing example SCS0101 FIO-BUS Fail FIO BUS No.1
+Meaning An error occurred on one side (No. 1 in the above example) of the ESB buses
+of the safety control station (station name = SCS0101).
+With the SCSP3, this message does not appear.
+Cause This is an ESB bus error on one side.
+Action SSB401, SEC402/SEC401 or ESB bus failure may be considered as an error
+cause. Take appropriate action in the following:
+• Check to see if the ESB bus cables are connected correctly. Check for incorrect
+connection or bad connection of the cables, or check the terminators
+of the bus.
+• Check to see if one SSB401 is causing a bus error of the entire buses according
+to the following procedure.
+Pull out the ESB bus connector of each SSB401 that connects to the corresponding
+bus, one by one, from the node.
+Wait for two to three seconds, and if “Recover” is not printed, insert the
+ESB bus connector again, and pull the bus connector of the next node.
+If “Recover” is printed, the bus connector of the SSB401 that was pull out
+at that time is faulty, so replace the SSB401.
+• If no recovery was made even after the bus connectors of all nodes were
+pulled out, the SEC402/SEC401 may be faulty. In such a case, replace
+the SEC402/SEC401.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-9
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+• If no recovery was still made, press the [START/STOP] button on the
+CPU module’s front panel on the control side twice, and switch the control
+right of the CPU module. Replace the CPU module after restarting.
+If the bus does not recover even after these operations, the error may be related
+to the ESB bus cable (T-shape connector and so on). Replace the ESB
+bus cable.
+Note This message is generated if all safety node units become abnormal.
+This message is also generated if all safety node units become abnormal in a
+system configuration that includes the Optical ESB Bus Repeater module.
+However, if all safety node units directly connected to SEC402/SEC401 without
+going through the Optical Repeater module become abnormal in this system
+configuration, this message is not generated so long as any safety node
+unit connected via the Optical Repeater module is normal.
+No.0064
+Message name Normal recovery of ESB bus
+Printing example SCS0101 FIO-BUS Recover FIO BUS No.1
+Meaning The ESB bus indicated in the message recovered normally. (This is a recovery
+message of No. 0063.)
+No.0065
+Message name Failure of N-ESB bus module (S2EN501) or ESB Bus Interface module
+(SSB401)
+Printing example 1 SCS0101 NBS Fail N-IO NODE 02 NBS RIGHT
+Meaning 1 An error occurred in an N-ESB bus module (S2EN501) (right side in the above
+example) of an N-IO node (2 in the above example) of the safety control station
+(station name = SCS0101).
+Cause 1 One of the following causes may be considered.
+• N-ESB bus module is faulty.
+• Connection route to the N-ESB bus module has problem.
+• For the N-I/O nodes that are connected via Optical ESB Bus Repeater
+modules, the Optical ESB Bus Repeater module related hardware such
+as ESB Bus Repeater module or Fiber-optic cable is faulty.
+Action 1 Replace the N-ESB bus module and check to see if the problem is resolved. If
+not, other locations may be abnormal. If all N-IO nodes connected to the NESB
+bus of the same system are abnormal, the N-ESB bus coupler module or
+N-ESB bus cable may be faulty. If all the N-IO nodes routed through the Optical
+ESB Bus Repeater related devices become abnormal, the Optical ESB
+Bus Repeater module or Fiber-optic cable may be faulty. Moreover, if the Optical
+ESB Bus Repeater modules are mounted in the SNT10D, the error may be
+caused by the failure of a power supply module of SNT10D unit. Identify the
+abnormal location from the message, LED ON status, etc., and replace the applicable
+device.
+Printing example 2 SCS0101 SBS Fail FIO NODE 02 SBS RIGHT
+Meaning 2 An error occurred in an ESB Bus Interface module (right side in the above example)
+of an FIO node (2 in the above example) of the safety control station
+(station name = SCS0101).
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-10
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Cause 2 One of the following causes may be considered.
+• ESB Bus Interface module becomes abnormal.
+• Connection route to the ESB Bus Interface module becomes abnormal.
+• For the safety node units that are connected via Optical ESB Bus Repeater
+modules, the Optical ESB Bus Repeater related module related hardware
+(Optical ESB Bus Repeater module, Fiber-optic cable, etc.) is faulty.
+Action 2 If no ESB bus error message is output, the ESB Bus Interface module may be
+faulty. Replace the applicable ESB Bus Interface module. If all the safety node
+units routed through the Optical ESB Bus Repeater related devices become
+abnormal and all the safety node units routed through such Optical Repeater
+become abnormal, error may have occurred in the Optical ESB Bus Repeater
+module or Fiber-optic cable. Moreover, if the Optical ESB Bus Repeater modules
+are mounted in the SNT10D, the error may be caused by the failure of a
+power supply module of SNT10D unit. Identify the abnormal location from the
+message, LED ON status, etc., and replace the applicable device.
+If all nodes connected to the SCSP3 (except for the N-IO nodes connected via
+the N-ESB bus) are abnormal, the ESB Bus Interface module (SSB401), ESB
+bus coupler module (SEC402/SEC401) or ESB bus may be faulty. Execute the
+action under No. 0063.
+No.0066
+Message name Normal recovery of N-ESB bus module (S2EN501) or ESB Bus Interface module
+(SSB401) of node
+Printing example 1 SCS0101 NBS Recover N-IO NODE 02 NBS RIGHT
+Meaning 1 An N-ESB bus module (right side in the above example) of an N-IO node (2 in
+the above example) of the safety control station (station name = SCS0101) recovered
+normally. (This is a recovery message of No. 0065.)
+Printing example 2 SCS0101 SBS Recover FIO NODE 02 SBS RIGHT
+Meaning 2 An ESB Bus Interface module (right side in the above example) of an FIO
+node (2 in the above example) of the safety control station (station name =
+SCS0101) recovered normally. (This is a recovery message of No. 0065.)
+No.0067
+Message name Failure of power supply of node
+Printing example 1 SCS0101 PSU Fail N-IO NODE 02 PSU 1 (POWER OFF)
+Meaning 1 An error occurred in a power supply unit (1 in the above example) of an N-IO
+node (2 in the above example) of the safety control station (station name =
+SCS0101). One of the following items is displayed in the parentheses in the
+above printing example 1.
+POWER OFF: The power supply unit stopped functioning.
+OVERVOLTAGE: The output voltage of the power supply unit is too high.
+Cause 1 Faulty power supply unit of the node interface unit
+Action 1 The actions corresponding to the items shown in ( ) are as follows:
+POWER
+OFF:
+The power supply of the applicable node interface unit may be
+faulty or the power feed system may be faulty. Check the condi-
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-11
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+tion of the power supply unit of the applicable node interface unit
+and the power feed system.
+OVERVOLTAGE:
+Power supply unit of the applicable node interface unit is faulty.
+Replace the power supply unit.
+Printing example 2 SCS0101 PSU Fail FIO NODE 02 PSU RIGHT
+Meaning 2 An error occurred in a power supply module (right side in the above example)
+of an FIO node (2 in the above example) of the safety control station (station
+name = SCS0101).
+Cause 2 Faulty power supply module of the FIO node
+Action 2 Replace the power supply module of the applicable node.
+Note 2 If I/O module or N-ESB bus coupler module is defined to the CPU node, this
+message is generated as FIO node 1 when an error occurs in a PSU for the
+CPU node.
+No.0068
+Message name Normal recovery of power supply of a node
+Printing example 1 SCS0101 PSU Recover N-IO NODE 02 PSU 1 (POWER OFF)
+Meaning 1 The power supply unit of the node interface unit of the N-IO node indicated in
+the message (2 in the above example) recovered normally. The content in the
+parentheses in printing example 1 is the same as message No. 0067. (This is
+a recovery message of No. 0067.)
+Printing example 2 SCS0101 PSU Recover FIO NODE 02 PSU RIGHT
+Meaning 2 The power supply module of the FIO node indicated in the message (2 in the
+above example) recovered normally. (This is a recovery message of No.
+0067.)
+No.0069
+Message name Error before database download to I/O module
+Printing example SCS0101 IOM Download Error = A701
+Meaning Database download to the I/O module (IOM) can not be started.
+Cause/Action The cause and action vary depending on the content of the error.
+• A701
+This message occurs when attempting to download to an IOM while another
+IOM download is still running. Only one IOM download can be performed
+at one time, so please wait for the other IOM download to complete
+before running an IOM download operation again.
+• A72C
+Automatic IOM download to a standby side I/O module is running. This
+error occurs if IOM download to the same I/O module is manually executed
+from the SENG or online change download is executed to make
+changes in I/O parameter settings while automatic IOM download is running.
+• 5135
+This message occurs when attempting to download to an IOM even
+though it is running normally.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-12
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+• Others
+Report the error display content to Yokogawa’s service department.
+No.0073
+Message name Error in the F-SB bus connecting the N-IO I/O unit and node interface unit
+Printing example SCS0101 IOM-BUS Error N-IO NODE 01 UNIT 01 BUS No.01
+Meaning An error occurred in the F-SB bus connecting the N-IO I/O unit (1 in the above
+example) of N-IO node 1 of the safety control station (station name =
+SCS0101) and the node interface unit.
+Action The F-SB bus may be faulty. Check to see if the F-SB bus is connected properly.
+Check the F-SB bus for incorrect connection, bad connection, etc.
+No.0074
+Message name Normal recovery of the F-SB bus connecting the N-IO I/O unit and node interface
+Printing example SCS0101 IOM-BUS Recover N-IO NODE 01 UNIT 01 BUS No.01
+Meaning The F-SB bus connecting the N-IO I/O unit (1 in the above example) of N-IO
+node 1 of the safety control station (station name = SCS0101) and the node
+interface unit recovered from a communication error (this is a recovery message
+of No. 0073).
+No.0081
+Message name Failure of I/O module
+Printing example 1 SCS0101 IOM Fail N-IO NODE 01 UNIT 01 SLOT 01 Code = 5101
+Printing example 2 SCS0101 IOM Fail FIO NODE 01 SLOT 01 Code = 5101
+Meaning An error occurred in the I/O module or N-ESB bus coupler module (S2EN402/
+S2EN404). The message includes the module position (N-IO node 1, unit 1,
+slot 1 in printing example 1; FIO node 1 (CPU node), slot 1 in printing example
+2).
+Cause Refer to the error code descriptions.
+Action Replace the applicable I/O module.
+Table 3.1-4 Message No. 0081 - AIO/DIO Module and S2EN402/S2EN404 Errors
+Error code Description of error
+5101
+The communication between the CPU and an I/O module or S2EN402/S2EN404 encountered
+a no-response error. This error is caused either by an abnormality of the
+module or the communication route to the module.
+5102
+The model of the I/O module or S2EN402/S2EN404 defined on the SENG does not
+match the model of the module that is actually mounted. Check the model of the module.
+5103 The setting information defined on the SENG and the I/O module setting information
+do not match. Execute IOM download.
+5104 A hardware error of the I/O module was detected. Check detailed error causes in the
+IOM Report.
+Continues on the next page
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-13
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.1-4 Message No. 0081 - AIO/DIO Module and S2EN402/S2EN404 Errors (Table continued)
+Error code Description of error
+5105 A setting error of the I/O module. Check detailed error causes in the IOM Report (field
+side connector disconnection, field power supply/wiring problem, etc.)
+5106 The I/O module recovered from an error state. Check detailed error causes in the IOM
+Report.
+5107
+The error that actuated the output shutoff switch occurred. Check detailed error causes
+in the IOM Report. When this error occurred, start the I/O module after recovering
+from the error.
+5108, 5109, 5111,
+5112, 5113, 511D,
+511E
+A communication data check error was detected between the CPU and the I/O module.
+A failure of the I/O module or a problem of the communication path up to the I/O
+module may be the cause.
+Error codes 5108, 5109, 511D, and 511E are displayed only for N-IO.
+5114, 5115
+An error was detected in the redundant control part of the I/O module. Replace the I/O
+module.
+However, when two I/O modules in single configuration are changed to dual-redundant
+configuration and online change download is performed, this error may be detected
+if a connector cable is plugged to only one of the two modules. In this case, plug
+the connector cables to both modules. Recovery from this error is notified with system
+alarm message No.0082 “Normal recovery of I/O module”, and there is no need to replace
+the I/O modules.
+5116, 5117 An I/O module error was detected. Replace the I/O module.
+5118 An SCS internal error (SCS database error) was detected.
+Table 3.1-5 Error Details of Message No.0081 – Errors on ALR111/ALR121/ALE111 Modbus Slave and
+ALE111 DNP3 Slave
+Error Code Cause/Action
+C580
+The communication between CPU and I/O modules encounters a no-response error.
+This error may be caused by the I/O module abnormality, communication route abnormality
+or an abnormality other than C581 to C583 depicted.
+C581 The communication program is not downloaded to the communication module. Run
+IOM download.
+C582 The communication program in the communication module is not the program for
+Modbus slave communication/DNP3 slave function. Run IOM download.
+C583
+The physically installed communication module shows a different model name from
+the communication module defined in SENG. Check the model of the communication
+module.
+Table 3.1-6 Message No.0081 - ALR111/ALR121/ALE111 Subsystem Communication and S2LP131
+Safety Subsystem Communication Errors
+Error Code Cause/Action
+A33D No response from the communication module due to communication module abnormality.
+Replace the communication module.
+A33E Error occurred in the communication route between CPU and node.
+C581 The communication program is not downloaded to the communication module. Run
+IOM download.
+C582 The communication program in the communication module is not the program for the
+communication defined in SENG. Run IOM download.
+C583
+The physically installed communication module shows a different model name from
+the communication module defined in SENG. Check the model of the communication
+module.
+C585 Error is found by self-diagnosis. Replace the communication module.
+Continues on the next page
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-14
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.1-6 Message No.0081 - ALR111/ALR121/ALE111 Subsystem Communication and S2LP131
+Safety Subsystem Communication Errors (Table continued)
+Error Code Cause/Action
+C58A
+The PROFINET definition defined by PROFINET Configurator and the PROFINET
+definition in the fire and gas communication module S2LP131 do not match. Run IOM
+download to the communication module.
+C58D An error was detected in the communication board of the fire and gas communication
+module S2LP131. Replace the communication module.
+C58E
+A device with the same IP address as a communication module exists in the same
+subnet.
+After resolving the duplicate IP address, execute IOM download to the communication
+module.
+C598 The communication module is reset due to online change download or IOM download.
+C599 Downloading to database.
+C59A Downloading communication program.
+C5C1 Error found after resetting the communication module. Replace the communication
+module.
+C5C6
+Failed to download the communication program. Waiting time for shifting to the downloading
+mode of the communication program exceeded the time limit. Start IOM
+download again.
+C5C7 Failed to download the communication program. Processing time for downloading the
+communication program exceeded the time limit. Start IOM download again.
+C5E2 Communication module encountered an error and stopped. Replace the communication
+module.
+No.0082
+Message name Normal recovery of I/O module
+Printing example 1 SCS0101 IOM Recover N-IO NODE 01 UNIT 01 SLOT 01
+Printing example 2 SCS0101 IOM Recover FIO NODE 01 SLOT 01
+Meaning The I/O module or N-ESB bus coupler module (S2EN402/S2EN404) recovered
+normally. The message includes the module position (N-IO node 1, unit
+1, slot 1 in printing example 1; FIO node 1, slot 1 in printing example 2). (This
+is a recovery message of No. 0081.)
+No.0083
+Message name I/O module database error occurred
+Printing example 1 SCS0101 IOM Configuration Error N-IO NODE 01 UNIT 01 SLOT 01
+Printing example 2 SCS0101 IOM Configuration Error FIO NODE 01 SLOT 01
+Meaning An error occurred in the I/O module database. The message includes the I/O
+module position (N-IO node 1, unit 1, slot 1 in printing example 1; FIO node 1,
+slot 1 in printing example 2).
+Cause The database on the I/O module and the database on the SCS do not match.
+The following causes may be considered.
+• IOM download has not been executed.
+• IOM failure.
+Action If this error occurred after replacing a module or at startup, the database might
+not have been downloaded to the I/O module. Execute IOM download.
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-15
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+If this error occurred during I/O module operation, the I/O module may be faulty.
+Replace the I/O module.
+No.0085
+Message name I/O module communication error occurred
+Printing example 1 SCS0101 IOM Communication Error N-IO NODE 01 UNIT 01 SLOT 01 BUS
+No.01 RIGHT
+Meaning 1 A communication error occurred on bus 1 between the right-side node interface
+unit and the I/O module mounted in slot 1 of unit 1 of N-IO node 1 of the
+safety control station (station name = SCS0101). (If this error occurs on both
+buses, an IOM Failure state will result.)
+Cause 1 The node interface unit or its base plate may be faulty. If the message is generated
+for both the right side and left side, either communication interface of
+the I/O module may be faulty.
+Action 1 Replace the applicable node interface unit or its base plate. If the message is
+generated for both the right side and left side, be sure to replace the applicable
+I/O module.
+Printing example 2 SCS0101 IOM Communication Error FIO NODE 01 SLOT 01 RIGHT
+Meaning 2 An error occurred in one of the SB buses (right side in the above example). An
+error occurred when accessing the I/O module mounted in slot 1 of FIO node 1
+in the safety control station (station name = SCS0101).
+Cause 2 If this error occurred on all input modules within the same FIO node, an I/O
+module may be faulty, or the backboard bus of the FIO node may be faulty. Or,
+an ESB bus (right side in the above example) or an SSB401 (right side in the
+above example) may be faulty, or they may not be connected properly.
+Action 2 Report to Yokogawa’s service department.
+No.0086
+Message name Recovery from I/O module communication error
+Printing example 1 SCS0101 IOM Communication Recover N-IO NODE 01 UNIT 01 SLOT 01
+BUS No.01 RIGHT
+Meaning 1 The communication on bus 1 between the right-side node interface unit and
+the I/O module mounted in slot 1 of unit 1 of N-IO node 1 of the safety control
+station (station name = SCS0101) recovered. (This is a recovery message of
+No. 0085.)
+Printing example 2 SCS0101 IOM Communication Recover FIO NODE 01 SLOT 01 RIGHT
+Meaning 2 Communication recovered from the error with the I/O module mounted in slot 1
+of FIO node 1 of the safety control station (station name = SCS0101). (This is
+a recovery message of No. 0085.)
+No.0087
+Message name Node error occurred
+Printing example 1 SCS0101 NODE Fail N-IO NODE 02
+Meaning 1 An error occurred in N-IO node 2 of the safety control station (station name =
+SCS0101).
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-16
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Cause 1 One of the following causes may be considered.
+• A power failure occurred in the N-IO node, or both of the two N-ESB
+buses are faulty.
+• Both S2EN501s are faulty.
+• For the N-I/O nodes connected via Optical ESB Bus Repeater modules,
+the Optical ESB Bus Repeater related hardware such as Optical ESB Bus
+Repeater module or Fiber-optic cable is faulty.
+Printing example 2 SCS0101 NODE Fail FIO NODE 02
+Meaning 2 An error occurred in FIO node 2 of the safety control station (station name =
+SCS0101).
+Cause 2 One of the following causes may be considered.
+• A power failure occurred in the safety node unit, or both of the two ESB
+buses are faulty.
+• Both SSB401 are abnormal.
+• For the safety node units connected via Optical ESB Bus Repeater modules,
+the Optical ESB Bus Repeater related hardware such as Optical
+ESB Bus Repeater module or Fiber-optic cable is faulty.
+Action Report to Yokogawa’s service department.
+No.0088
+Message name Normal recovery of node
+Printing example 1 SCS0101 NODE Recover N-IO NODE 02
+Printing example 2 SCS0101 NODE Recover FIO NODE 02
+Meaning The node indicated in the message recovered normally. (This is a recovery
+message of No. 0087.)
+No.0089
+Message name Subsystem communication error
+Printing example SCS0101 SS-COM Error FIO NODE 01 SLOT 01 PORT 01 STN001 Code=
+A3B0
+Meaning A communication error occurred between the indicated communication module
+and the subsystem.
+Cause/Action The error details can be found in the instruction manuals of the connected
+subsystem. See the manuals for error details.
+Or, take an action based on the error message.
+Table 3.1-7 Message No. 0089 - Errors from Use of ALR111, ALR121
+Code Error Cause/Action
+A391 Driver Busy Occurs when sending or receiving.
+A392 Communication Line Busy
+This message occurs when carrier detection fails due to the
+CD signal line has been ON for more than the transmission
+enable monitoring time (*1).
+Continues on the next page
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-17
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.1-7 Message No. 0089 - Errors from Use of ALR111, ALR121 (Table continued)
+Code Error Cause/Action
+A393 Communication Line Not Ready
+This message occurs when, at the time of transmission, the
+CS signal line or DR signal line has been OFF for more
+than the transmission enable monitoring time.(*1)
+A394 Data size is too large for sending.
+A395 The port for sending is not declared.
+A397 Underrun
+A398 Interval of characters became
+timeout
+This message occurs when the interval of characters exceeds
+the specified time.
+A399 Reception buffer overflow
+A39A Reception parity error
+A39B Reception overrun
+A39C Reception frame error
+A39D Number of characters beyond
+range
+A39F Other errors
+A3B0 to
+A3FF Reserved for subsystems For more information, see the instruction manuals of subsystems.
+*1: The transmission-watching timer monitors the waiting time of the transmission line become ready for transmission. When RS
+is sent, and the waiting time for transmission exceeds the specified time period, the transmission becomes error. The transmission
+waiting time is normally set to 1000 ms.
+The conditions for transmission are as follows:
+• CD line off (When CD check is enabled)
+• CS (CTS) line on
+• DR line on (When DR check is enabled)
+Table 3.1-8 Message No. 0089 - Errors from Use of ALE111
+Code Error
+A309 Incorrect descriptor for designated socket.
+A30D Unauthorized access
+A30E Socket descriptor address specified in the created socket function is not correct.
+A316 Arguments of the function are incorrect
+A320 Connection is shutdown when transmitting to the connected socket.
+A324 Connection process is in progress following a non-blocking connect request. The connection
+process will complete after a while.
+A325 The previous non-block connect is not completed.
+A328 The data size is too large to be sent.
+A329 Socket and protocol are not consistent.
+A32B The specified protocol is not supported.
+A32D The function is not supported by the designated socket.
+A330 The specified address is already occupied.
+A331 0 is specified to the port number.
+A333 Cannot reach network from this host.
+A335 Connected destination severed the connection.
+A338 The socket is already connected
+A339 The socket is not connected
+Continues on the next page
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-18
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.1-8 Message No. 0089 - Errors from Use of ALE111 (Table continued)
+Code Error
+A33C Timeout before connection is established
+A33D Connection is denied by destination.
+A3B0 to
+A3FF
+Reserved for each subsystem. For more information, see the instruction manuals of subsystems.
+Remark Subsystem communication
+No.0090
+Message name Subsystem communication recovered
+Printing example SCS0101 SS-COM Recover FIO NODE 01 SLOT 01 PORT 01 STN001
+Meaning The communication between the indicated communication module and the
+subsystem recovered from the error.
+Remark Subsystem communication
+No.0093
+Message name CPU node’s housekeeping unit error
+Printing example SCS0101 RIGHT HKU Error Code=0001
+Meaning The CPU node’s housekeeping unit of the safety control station (station name
+= SCS0101) is faulty. “Code” indicates detailed internal information.
+Action Report to Yokogawa’s service department.
+Remark HKU function
+No.0094
+Message name Normal recovery of CPU node’s housekeeping unit
+Printing example SCS0101 RIGHT HKU Recover Code=0001
+Meaning The CPU node’s housekeeping unit of the safety control station (station name
+= SCS0101) recovered normally. (This is a recovery message of No. 0093.)
+Remark HKU function
+<3.1 Safety Control Station Error Occurrence and Recovery Messages (Message Numbers 0001 through
+0094)> 3-19
+IM
+No.0425
+Message name Start of online upgrade
+Printing example SCS0101 Online Upgrade Start
+Meaning An online upgrade has been started.
+Cause An operation was performed by the online upgrade tool.
+Remark Online upgrade function
+No.0426
+Message name Normal completion of online upgrade
+Printing example SCS0101 Online Upgrade Complete
+Meaning The online upgrade completed properly.
+Cause An operation was performed by the online upgrade tool.
+Remark Online upgrade function
+No.0427
+Message name Online upgrade error
+Printing example SCS0101 Online Upgrade Error CODE = 1234 DET = 1234
+Meaning The online upgrade ended with an error.
+Cause An operation was performed by the online upgrade tool.
+Remark Online upgrade function
+No.0447
+Message name Node maintenance port enabled notification
+Printing example SCS0101 N-IO NODE Maintenance Port Enabled
+Meaning The maintenance port of the N-IO node of the safety control station (station
+name = SCS0101) became enabled and the security level of the N-IO node is
+lowered.
+Action When the operation via the maintenance port is finished, access the maintenance
+port setting for the N-IO from the NIU maintenance port setting tool and
+disable the port.
+No.0448
+Message name Node maintenance port disabled notification
+<3.2 Safety Control Station Status Change Related Messages (Message Numbers 0425 through 0480)>
+3-20
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 N-IO NODE Maintenance Port Disabled
+Meaning The maintenance port of the N-IO node of the safety control station (station
+name = SCS0101) became disabled.
+No.0450
+Message name Copy program and database on control side of safety control station to standby
+side
+Printing example SCS0101 Copy
+Meaning The copying of the program and database on the control side of the safety
+control station to the standby side has been started.
+Cause This message is displayed when the CPU module on the standby side of the
+safety control station (station name = SCS0101) was started.
+No.0451
+Message name Information of switching of control side of safety control station
+Printing example SCS0101 RIGHT Control
+Meaning The CPU module on the right or left side (right side in the above example) of
+the safety control station (station name = SCS0101) has been set to the control
+side.
+No.0452
+Message name Information of switching of standby side of safety control station
+Printing example SCS0101 LEFT Stand-By
+Meaning The CPU module on the right or left side (left side in the above example) of the
+safety control station (station name = SCS0101) has been set to the standby
+side.
+No.0455
+Message name Node maintenance notification
+Printing example SCS0101 NODE Maintenance N-IO NODE 01
+Meaning An N-IO node (1 in the above example) of the safety control station (station
+name = SCS0101) entered the maintenance mode.
+Action To cancel the maintenance mode, perform a cancellation operation by using
+the maintenance tool that is connected to the N-ESB bus module of the applicable
+node, or unplug the USB cable connecting the maintenance tool.
+No.0456
+Message name Node maintenance cancellation notification
+Printing example SCS0101 NODE Maintenance Release N-IO NODE 01
+Meaning The maintenance mode of an N-IO node (1 in the above example) of the safety
+control station (station name = SCS0101) was canceled.
+<3.2 Safety Control Station Status Change Related Messages (Message Numbers 0425 through 0480)>
+3-21
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.0459
+Message name Information of I/O module service side
+Printing example 1 SCS0101 IOM In Service N-IO NODE 01 UNIT 01 SLOT 01
+Printing example 2 SCS0101 IOM In Service FIO NODE 01 SLOT 01
+Meaning One of the redundant I/O modules (N-IO node 1, unit 1, slot 1 in printing example
+1; FIO node 1, slot 1 in printing example 2) gained the control right.
+No.0460
+Message name Information of I/O module out service
+Printing example 1 SCS0101 IOM Out Service N-IO NODE 01 UNIT 01 SLOT 01
+Printing example 2 SCS0101 IOM Out Service FIO NODE 01 SLOT 01
+Meaning One of the redundant I/O modules (N-IO node 1, unit 1, slot 1 in printing example
+1; FIO node 1, slot 1 in printing example 2) switched to the standby side or
+stopped.
+No.0471
+Message name Normal completion of online change download
+Printing example SCS0101 Online Download (Integration Database) Complete
+Meaning Online change download to the safety control station has normally been completed.
+No.0474
+Message name Information of tag list duplicate error
+Printing example SCS0101 Tag Duplication Error Tag = TAG001
+Meaning A duplicate tag list name exists in the same safety control station.
+Action Report to Yokogawa’s service department.
+No.0475
+Message name Start of database download to I/O module
+Printing example 1 SCS0101 IOM Download Start N-IO NODE 01 UNIT 01 SLOT 01
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Start N-IO NODE 01 UNIT 01 SLOT 01
+Printing example 2 SCS0101 IOM Download Start FIO NODE 01 SLOT 01
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Start FIO NODE 01 SLOT 02
+Meaning Database download to the I/O module indicated in the message has been started.
+<3.2 Safety Control Station Status Change Related Messages (Message Numbers 0425 through 0480)>
+3-22
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+No.0476
+Message name Normal completion of database download to I/O module
+Printing example 1 SCS0101 IOM Download Complete N-IO NODE 01 UNIT 01 SLOT 01
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Complete N-IO NODE 01 UNIT 01 SLOT
+01
+Printing example 2 SCS0101 IOM Download Complete FIO NODE 01 SLOT 01
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Complete FIO NODE 01 SLOT 02
+Meaning Database download to the I/O module indicated in the message has normally
+been completed.
+No.0477
+Message name Database download error to I/O module
+Printing example 1 SCS0101 IOM Download Error N-IO NODE 01 UNIT 01 SLOT 01 Error= xxxx
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Error N-IO NODE 01 UNIT 01 SLOT 01
+Error= xxxx
+Printing example 2 SCS0101 IOM Download Error FIO NODE 01 SLOT 01 Error= xxxx
+In the case of automatic IOM download:
+SCS0101 Automatic IOM Download Error FIO NODE 01 SLOT 02 Error= xxxx
+Meaning An error occurred during database download to the I/O module indicated in the
+message. “xxxx” indicates an error code.
+Cause/Action The error codes are described below. If an error occurs, remove the cause,
+and execute IOM download again.
+If an error other than the following errors occurred, replace the I/O module and
+execute IOM download again. If other error occurred again, report details to
+Yokogawa’s service department.
+• Error codes for I/O modules other than ALR111, ALR121, ALE111, and
+S2LP131.
+A701: Downloading for the I/O module is currently being executed.
+3B1B: The I/O module is faulty.
+CFxx: An error was returned from the I/O module.
+CF10: The type of the I/O module does not match.
+• Error codes for ALR111, ALR121, ALE111, and S2LP131
+A33D: The CPU module cannot communicate with the communication
+module.
+A33E: There is an error or fault in the communication path between the
+CPU module and the communication module. (Node failure, etc.)
+A731: Simultaneous downloading of multiple communication programs
+was attempted. Multiple communication programs cannot be
+added by one online change download. If you try to add them simultaneously,
+A731 error occurs when downloading is attempted
+<3.2 Safety Control Station Status Change Related Messages (Message Numbers 0425 through 0480)>
+3-23
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+for the second and subsequent programs. If the error occurs,
+perform IOM download to the communication module for which
+the downloading failed from the SCS State Management Window
+after the online change download is finished.
+No.0480
+Message name Heavy load on periodical processing
+Printing example SCS0101 Too Heavy Load
+Meaning The processing time of External Communication Function of the safety control
+station has exceeded the four times the scan period that is specified for External
+Communication Function.
+Cause The load on the safety control station is too heavy.
+Action Correct the application and reduce the load on the safety control station.
+<3.2 Safety Control Station Status Change Related Messages (Message Numbers 0425 through 0480)>
+3-24
+IM
+No.0727
+Message name Block mode recovery error information
+Printing example SCS0101 Block Mode Change Error Block=TAG001 Code=9601-0000
+TAG001: Tag name
+9601-0000: Error code
+Meaning Block mode recovery failed at the end of downloading.
+Action Report the error code to Yokogawa’s Service department.
+No.0743
+Message name Self-diagnostic SEN-BUS Failure
+Printing example SCS0101 SEN-BUS Alarm SEN-BUS No.1
+Meaning The SEN-BUS in question has failed.
+Cause There is a failure in the SEN-BUS in the CPU node or the CPU module mounted.
+Action Replace the CPU node or the CPU module mounted.
+No.0744
+Message name Self-diagnostic SEN-BUS Recovery
+Printing example SCS0101 SEN-BUS Recover SEN-BUS No.1
+Meaning The SEN-BUS in question has returned to normal. (This is a recovery message
+of No. 0743.)
+No.0749
+Message name Self-diagnosis detected an I/O Error
+Printing example 1 SCS0101 N-IO Self Diag Error N-IO CODE = 00005119 DET = 00000000
+Printing example 2 SCS0101 FIO Self Diag Error FIO CODE = 00005119 DET = 00000000
+Meaning I/O error was detected during self-diagnosis.
+Cause/Action The action varies depending on the Code and DET. Contact Yokogawa service
+department with the contents of CODE and DET.
+The following describes the contents of CODE and DET.
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-25
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.3-1 Message No. 0749 - CODE and DET List
+CODE/DET Errors
+CODE = 00005119 An error was detected in the redundant control unit. Switching is not performed
+even if an error occurred on the control side. Replace the I/O module.
+CODE = 00005171 The I/O module does not support the function that is intended to use. The function
+and the I/O module supporting the function are as follows:
+Fire and Gas device resetting function: SAI143 of style S4 or higher
+Refer to the IOM Model in the IOM Report to find out the style of the I/O module.
+DET = nnss0000 A detail code of CODE = 00005119 and CODE = 00005171. nnss indicates the
+installation position of the I/O module in error. nn is a node number, and ss is a
+slot number.
+CODE = 0000511B An error was detected in the I/O unit of the CPU module.
+DET = 0000 Y48x A detail code of CODE = 0000511B. Y = 0 indicates an error in the right CPU
+module, and Y = 8 indicates an error in the left CPU module.
+No.0750
+Message name I/O Recovery from the error detected by self-diagnosis
+Printing example 1 SCS0101 N-IO Self Diag Recover N-IO CODE = 00000000 DET = 00000000
+Printing example 2 SCS0101 FIO Self Diag Recover FIO CODE = 00000000 DET = 00000000
+Meaning Recovery from I/O error detected by self-diagnosis. (This is a recovery message
+of No. 0749.)
+No.0751
+Message name Time self-diagnostic testing error
+Printing example SCS0101 RIGHT Time Self Diag Error Code=00030021
+Meaning A clock error is detected by self-diagnosis while the CPU of either redundant
+or non-redundant is running.
+Cause VEHICLE clock, RTC or GPS clock trouble
+Action Replace the CPU module.
+No.0753
+Message name Communication Overload
+Printing example SCS0101 Communication Overload
+Meaning Communication load to safety control station exceeded the limit.
+Cause There were many communication demands from the operation and monitoring
+function window or application programs to the safety control station.
+Action If the windows for the indicated safety control station are displayed on the
+CENTUM HIS, the windows need to be closed. Modifying the application programs
+may also reduce the communication load to the safety control station.
+No.0767
+Message name ESB bus error on either bus
+Printing example 1 SCS0101 N-IO-BUS Fail N-IO RIGHT BUS No.01
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-26
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning 1 An error occurred in the communication on bus 1 from the right-side bus interface
+(IO controller in the CPU module or the N-ESB bus coupler module) of
+the N-IO of the safety control station (station name = SCS0101). (Communication
+with all nodes on the bus 1 side became abnormal.) For SCSP3, "N-IO" is
+shown as in printing example 1. "N-IO" is also shown when only FIO nodes
+are used in the SCSP3.
+Cause 1 Since an error occurred only in one CPU module, the IO controller in the CPU
+module, backboard of the CPU node, or N-ESB bus coupler module
+(S2EN402/S2EN404) may be faulty.
+Action 1 Replace the CPU module, CPU node, or N-ESB bus coupler module
+(S2EN402/S2EN404).
+Printing example 2 SCS0101 FIO-BUS Fail FIO RIGHT BUS No.1
+Meaning 2 A communication error (bus1 in the above example) occurred in standby side
+CPU module (right side in the above example) of the safety control station
+(station name = SCS0101). (Communication with all FIO nodes on bus 1 side
+became abnormal.)
+Cause 2 The CPU module, backboard of the CPU node, or ESB bus coupler module
+(SEC402/SEC401) may be faulty.
+Action 2 Replace the CPU module, CPU node or ESB bus coupler module (SEC402/
+SEC401).
+No.0768
+Message name Recovery from ESB bus error on either bus
+Printing example 1 SCS0101 N-IO-BUS Recover N-IO RIGHT BUS No.01
+Meaning 1 The communication on bus 1 from the right-side bus interface of the N-IO of
+the safety control station (station name = SCS0101) recovered. For SCSP3,
+"N-IO" is shown as in printing example 1. "N-IO" is also shown when only FIO
+nodes are used in the SCSP3. (This is a recovery message of No. 0767.)
+Printing example 2 SCS0101 FIO-BUS Recover FIO RIGHT BUS No.1
+Meaning 2 A communication error (bus1 in the above example) in standby side CPU
+module (right side in the above example) of the safety control station (station
+name = SCS0101) recovered. (This is a recovery message of No. 0767.)
+No.0769
+Message name Error in the diagnosis of the safety control station cabinet by external equipment
+Printing example SCS0101 External Equipment Error N-IO NODE 01
+Meaning An error was detected in the diagnosis, by external equipment, of the cabinet
+storing N-IO node 1 of the safety control station (station name = SCS0101).
+Action Check the type of error through, for example, the display of the external equipment
+for the applicable cabinet, and then take an action according to the error.
+For details, check the manual of the applicable external equipment.
+No.0770
+Message name Recovery from error in the diagnosis of the safety control station cabinet by
+external equipment
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-27
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 External Equipment Recover N-IO NODE 01
+Meaning An error detected in the diagnosis, by external equipment, of the cabinet storing
+N-IO node 1 of the safety control station (station name = SCS0101) recovered
+(this is a recovery message of No. 0769).
+No.0787
+Message name Self-diagnosis detected I/O error in CPU module
+Printing example SCS0101 I/O Diagnosis Error IO RIGHT CODE=02518000 00000000
+Meaning A self-diagnosis error occurred in a CPU module (right side in the above example)
+of the safety control station (station name = SCS0101).
+Cause/Action Perform the appropriate action based on the cause that is indicated for the detailed
+error codes.
+Table 3.3-2 Message No. 0787 - Error Code Detail
+CODE(hexadecimal, 16
+digits)
+Error code Factor
+(Upper 8
+digits)
+Error detail
+(Lower 8
+digits)
+0251 8000 0000 0000 A CPU module error was detected. Replace the CPU module.
+0255 8082 0000 0270
+(*1)
+This code indicates that the revision of
+the firmware (F4) in the CPU module is
+obsolete for the system configured with
+Optical ESB Bus Repeater modules.
+If a system contains Optical ESB Bus
+Repeater module, the proper revision
+of CPU should be used.
+xxxx0471 xxxx xxxx
+SCSP2-S, SCSP3-S: An error was detected
+in the I/O operation and monitoring
+diagnosis of the CPU.
+The CPU module have failed or the load
+in the I/O communication band is too
+heavy.
+If many I/O modules are installed on
+the ESB bus extended with optical cables,
+estimate the I/O communication
+band and check the validity.
+xxxx0313 xxxx xxxx SCSP2-S, SCSP3-S : The I/O function
+part of the CPU may be faulty. Replace the CPU module.
+Message name Block mode recovery error information
+Printing example SCS0101 Block Mode Change Error Block=TAG001 Code=9601-0000
+TAG001: Tag name
+9601-0000: Error code
+Meaning Block mode recovery failed at the end of downloading.
+Action Report the error code to Yokogawa’s Service department.
+No.0743
+Message name Self-diagnostic SEN-BUS Failure
+Printing example SCS0101 SEN-BUS Alarm SEN-BUS No.1
+Meaning The SEN-BUS in question has failed.
+Cause There is a failure in the SEN-BUS in the CPU node or the CPU module mounted.
+Action Replace the CPU node or the CPU module mounted.
+No.0744
+Message name Self-diagnostic SEN-BUS Recovery
+Printing example SCS0101 SEN-BUS Recover SEN-BUS No.1
+Meaning The SEN-BUS in question has returned to normal. (This is a recovery message
+of No. 0743.)
+No.0749
+Message name Self-diagnosis detected an I/O Error
+Printing example 1 SCS0101 N-IO Self Diag Error N-IO CODE = 00005119 DET = 00000000
+Printing example 2 SCS0101 FIO Self Diag Error FIO CODE = 00005119 DET = 00000000
+Meaning I/O error was detected during self-diagnosis.
+Cause/Action The action varies depending on the Code and DET. Contact Yokogawa service
+department with the contents of CODE and DET.
+The following describes the contents of CODE and DET.
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-25
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.3-1 Message No. 0749 - CODE and DET List
+CODE/DET Errors
+CODE = 00005119 An error was detected in the redundant control unit. Switching is not performed
+even if an error occurred on the control side. Replace the I/O module.
+CODE = 00005171 The I/O module does not support the function that is intended to use. The function
+and the I/O module supporting the function are as follows:
+Fire and Gas device resetting function: SAI143 of style S4 or higher
+Refer to the IOM Model in the IOM Report to find out the style of the I/O module.
+DET = nnss0000 A detail code of CODE = 00005119 and CODE = 00005171. nnss indicates the
+installation position of the I/O module in error. nn is a node number, and ss is a
+slot number.
+CODE = 0000511B An error was detected in the I/O unit of the CPU module.
+DET = 0000 Y48x A detail code of CODE = 0000511B. Y = 0 indicates an error in the right CPU
+module, and Y = 8 indicates an error in the left CPU module.
+No.0750
+Message name I/O Recovery from the error detected by self-diagnosis
+Printing example 1 SCS0101 N-IO Self Diag Recover N-IO CODE = 00000000 DET = 00000000
+Printing example 2 SCS0101 FIO Self Diag Recover FIO CODE = 00000000 DET = 00000000
+Meaning Recovery from I/O error detected by self-diagnosis. (This is a recovery message
+of No. 0749.)
+No.0751
+Message name Time self-diagnostic testing error
+Printing example SCS0101 RIGHT Time Self Diag Error Code=00030021
+Meaning A clock error is detected by self-diagnosis while the CPU of either redundant
+or non-redundant is running.
+Cause VEHICLE clock, RTC or GPS clock trouble
+Action Replace the CPU module.
+No.0753
+Message name Communication Overload
+Printing example SCS0101 Communication Overload
+Meaning Communication load to safety control station exceeded the limit.
+Cause There were many communication demands from the operation and monitoring
+function window or application programs to the safety control station.
+Action If the windows for the indicated safety control station are displayed on the
+CENTUM HIS, the windows need to be closed. Modifying the application programs
+may also reduce the communication load to the safety control station.
+No.0767
+Message name ESB bus error on either bus
+Printing example 1 SCS0101 N-IO-BUS Fail N-IO RIGHT BUS No.01
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-26
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Meaning 1 An error occurred in the communication on bus 1 from the right-side bus interface
+(IO controller in the CPU module or the N-ESB bus coupler module) of
+the N-IO of the safety control station (station name = SCS0101). (Communication
+with all nodes on the bus 1 side became abnormal.) For SCSP3, "N-IO" is
+shown as in printing example 1. "N-IO" is also shown when only FIO nodes
+are used in the SCSP3.
+Cause 1 Since an error occurred only in one CPU module, the IO controller in the CPU
+module, backboard of the CPU node, or N-ESB bus coupler module
+(S2EN402/S2EN404) may be faulty.
+Action 1 Replace the CPU module, CPU node, or N-ESB bus coupler module
+(S2EN402/S2EN404).
+Printing example 2 SCS0101 FIO-BUS Fail FIO RIGHT BUS No.1
+Meaning 2 A communication error (bus1 in the above example) occurred in standby side
+CPU module (right side in the above example) of the safety control station
+(station name = SCS0101). (Communication with all FIO nodes on bus 1 side
+became abnormal.)
+Cause 2 The CPU module, backboard of the CPU node, or ESB bus coupler module
+(SEC402/SEC401) may be faulty.
+Action 2 Replace the CPU module, CPU node or ESB bus coupler module (SEC402/
+SEC401).
+No.0768
+Message name Recovery from ESB bus error on either bus
+Printing example 1 SCS0101 N-IO-BUS Recover N-IO RIGHT BUS No.01
+Meaning 1 The communication on bus 1 from the right-side bus interface of the N-IO of
+the safety control station (station name = SCS0101) recovered. For SCSP3,
+"N-IO" is shown as in printing example 1. "N-IO" is also shown when only FIO
+nodes are used in the SCSP3. (This is a recovery message of No. 0767.)
+Printing example 2 SCS0101 FIO-BUS Recover FIO RIGHT BUS No.1
+Meaning 2 A communication error (bus1 in the above example) in standby side CPU
+module (right side in the above example) of the safety control station (station
+name = SCS0101) recovered. (This is a recovery message of No. 0767.)
+No.0769
+Message name Error in the diagnosis of the safety control station cabinet by external equipment
+Printing example SCS0101 External Equipment Error N-IO NODE 01
+Meaning An error was detected in the diagnosis, by external equipment, of the cabinet
+storing N-IO node 1 of the safety control station (station name = SCS0101).
+Action Check the type of error through, for example, the display of the external equipment
+for the applicable cabinet, and then take an action according to the error.
+For details, check the manual of the applicable external equipment.
+No.0770
+Message name Recovery from error in the diagnosis of the safety control station cabinet by
+external equipment
+<3.3 Safety Control Station Related Messages (Message Numbers 0727 through 0787)> 3-27
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Printing example SCS0101 External Equipment Recover N-IO NODE 01
+Meaning An error detected in the diagnosis, by external equipment, of the cabinet storing
+N-IO node 1 of the safety control station (station name = SCS0101) recovered
+(this is a recovery message of No. 0769).
+No.0787
+Message name Self-diagnosis detected I/O error in CPU module
+Printing example SCS0101 I/O Diagnosis Error IO RIGHT CODE=02518000 00000000
+Meaning A self-diagnosis error occurred in a CPU module (right side in the above example)
+of the safety control station (station name = SCS0101).
+Cause/Action Perform the appropriate action based on the cause that is indicated for the detailed
+error codes.
+Table 3.3-2 Message No. 0787 - Error Code Detail
+CODE(hexadecimal, 16
+digits)
+Error code Factor
+(Upper 8
+digits)
+Error detail
+(Lower 8
+digits)
+0251 8000 0000 0000 A CPU module error was detected. Replace the CPU module.
+0255 8082 0000 0270
+(*1)
+This code indicates that the revision of
+the firmware (F4) in the CPU module is
+obsolete for the system configured with
+Optical ESB Bus Repeater modules.
+If a system contains Optical ESB Bus
+Repeater module, the proper revision
+of CPU should be used.
+xxxx0471 xxxx xxxx
+SCSP2-S, SCSP3-S: An error was detected
+in the I/O operation and monitoring
+diagnosis of the CPU.
+The CPU module have failed or the load
+in the I/O communication band is too
+heavy.
+If many I/O modules are installed on
+the ESB bus extended with optical cables,
+estimate the I/O communication
+band and check the validity.
+xxxx0313 xxxx xxxx SCSP2-S, SCSP3-S : The I/O function
+part of the CPU may be faulty. Replace the CPU module.
+No.3401
+Message name HART device event notification
+Printing example SCS0101 HART NODE 01 UNIT 01 SLOT 01 CH 01 Event Device=
+0123456789 Detail=xxx
+Meaning A status change was detected from the HART device (device ID =
+0123456789) that is connected to channel 1 of slot 1 of unit 1 of N-IO node 1
+of the safety control station (station name = SCS0101) and notified.
+Action Check the detailed condition of the HART device through PRM, FieldMate, or
+a handy terminal.
+No.3403
+Message name IOM detected a HART device status change
+Printing example SCS0101 HART NODE 01 UNIT 01 SLOT 01 CH 01 Device Status Changed
+Device=0123456789 Detail=xxx
+Meaning The IOM detected a status change in the HART device (device ID =
+0123456789) that is connected to channel 1 of slot 1 of unit 1 of N-IO node 1
+of the safety control station (station name = SCS0101).
+Action Check the detailed condition of the HART device through PRM, FieldMate, or
+a handy terminal.
+Remarks This message is generated for status changes including the HART communication
+errors that are detected by the HART device.
+No.3405
+Message name Communication error when acquiring HART device status (No response)
+Printing example SCS0101 HART NODE 01 UNIT 01 SLOT 01 CH 01 Device Status Communication
+Error (No Response) Device=0123456789
+Meaning When acquiring the status of the HART device (device ID = 0123456789) that
+is connected to channel 1 of the I/O module installed in slot 1 of unit 1 of N-IO
+node 1 of the safety control station (station name = SCS0101), no response
+(time-out) occurred in the communication between the HART device and the
+analog digital I/O module.
+Cause No response is received from the HART device due to one of the following
+causes:
+• Disconnected cable
+• Effect of noise
+<3.4 Fieldbus Messages (Message Numbers 3401 through 3408)> 3-29
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+• The range of the received signal is low.
+• Output current from the analog digital I/O module is outside the HART
+communication enable range supported by the HART device.
+Action Check the HART device, communication route between the HART device and
+analog digital I/O module, or I/O parameter settings (tight shut/full open output
+settings, etc.)
+Remarks If no problem is found in the communication route from the HART device to the
+analog digital I/O module, the HART circuit in the analog digital I/O module
+may be faulty. Depending on the faulty location in the HART circuit, the control
+right over the analog digital I/O module may not switch even in a redundant
+configuration. In this case, switch the module control right by using the IOM
+control right switching tool and check if the communication recovers. If the
+communication recovered to normal, the HART circuit in the standby module is
+likely faulty, so replace the module.
+No.3407
+Message name Communication error when acquiring HART device status
+Printing example SCS0101 HART NODE 01 UNIT 01 SLOT 01 CH 01 Device Status Communication
+Error Device=0123456789 Code=XXX
+Meaning A communication error occurred when acquiring the status of the HART device
+(device ID = 0123456789) connected to the analog digital I/O module mounted
+in slot 1 of unit 1 of N-IO node 1 of the safety control station (station name =
+SCS0101).
+Cause The HART device or the communication route between the HART device and
+the analog digital I/O module likely encountered a problem.
+Action Take an action based on the cause associated with the detailed error code.
+Remarks If no problem is found in the communication route from the HART device to the
+analog digital I/O module, the HART circuit in the analog digital I/O module
+may be faulty. Depending on the faulty location in the HART circuit, the control
+right over the analog digital I/O module may not switch even in a redundant
+configuration. In this case, switch the module control right by using the IOM
+control right switching tool and check if the communication recovers. If the
+communication recovered to normal, the HART circuit in the standby module is
+likely faulty, so replace the module.
+Table 3.4-1 Detailed Error Codes (D6xx)
+Code
+(Hex.)
+Meaning Cause Action
+D643 Cannot transmit or receive
+due to incorrect frames on
+the HART line.
+Possibly caused by an inconsistent
+device on the
+HART line or by effect of
+noise.
+Check the HART device or the
+communication route between the
+HART device and analog digital
+I/O module.
+D644 A framing error or an overrun
+error occurred when receiving
+one byte.
+Possibly caused by effect
+of noise.
+Check the HART device or the
+communication route between the
+HART device and analog digital
+I/O module.
+D645 A parity error occurred
+when receiving one byte.
+Possibly caused by effect
+of noise.
+Check the HART device or the
+communication route between the
+HART device and analog digital
+I/O module.
+Continues on the next page
+<3.4 Fieldbus Messages (Message Numbers 3401 through 3408)> 3-30
+IM 32P02B10-01EN 6th Edition : Dec.20,2019-00
+Table 3.4-1 Detailed Error Codes (D6xx) (Table continued)
+Code
+(Hex.)
+Meaning Cause Action
+D648 Delimiter error Possibly caused by effect
+of noise.
+Check the HART device or the
+communication route between the
+HART device and analog digital
+I/O module.
+D649 The length of the received
+frame does not match the
+given frame length. Or, a
+character-gap timeout occurred.
+This error occurs when the
+device discontinues transmission,
+and thus possibly
+caused by the device.
+Check the detailed condition of the
+HART device through PRM,
+FieldMate, or a handy terminal.
+D64A A checksum error was
+found in the received
+frame.
+Possibly caused by effect
+of noise.
+Check the communication route
+between the HART device and analog
+digital I/O module.
+D64D Unexpected response Possibly caused by the device.
+Check the detailed condition of the
+applicable HART device using the
+PRM, FieldMate or handy terminal.
+D64F Other errors Error other than D643 to
+D64D. Possibly caused by
+the device.
+Check the HART device or the
+communication route between the
+HART device and analog digital
+I/O module.
+D6CD A frame of unexpected size
+was received during status
+acquisition from the HART
+device.
+The HART device has the
+specification of the version
+that is not supported by the
+analog digital I/O module.
+Enable event notification on the
+HART device, or change the I/O
+parameter settings so as to disable
+communication for HART device
+status acquisition.(*1)
+*1: You must take action based on whether the HART device supports event notification. For whether or not Event Notification for
+the applicable HART device is supported, check the specification of the HART device or vendor of the HART device.
+No.3408
+Message name Normal recovery of HART device status acquisition communication
+Printing example SCS0101 HART NODE 01 UNIT 01 SLOT 01 CH 01 Device Status Communication
+Recover Device=0123456789
+Meaning Communication between the HART device (device ID = 0123456789) connected
+to channel 1 of the analog digital I/O module installed in slot 1 of unit 1 of
+N-IO node 1 of the safety control station (station name = SCS0101) and analog
+digital I/O module recovered normally when acquiring the status of the
+HART device.
+<3.4 Fieldbus Messages (Message Numbers 3401 through 3408)> 3-31
+IM
